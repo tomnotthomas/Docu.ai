@@ -2,15 +2,16 @@ import { TextractClient, AnalyzeDocumentCommand } from "@aws-sdk/client-textract
 import { fromIni } from '@aws-sdk/credential-providers';
 import 'dotenv/config'
 
+//REGION is the region of your AWS account, credentials profile is your profile name
 const textractClient = new TextractClient({
   region: process.env.REGION,
   credentials: fromIni({ profile: process.env.PROFILE }),
 });
 
 const analyseDoc = async function (req, res, next) {
- 
 
-// Set params
+
+// You just need to provide the bucket and document name of your s3 bucket and you will get the text back.
 const params = {
   Document: {
     S3Object: {

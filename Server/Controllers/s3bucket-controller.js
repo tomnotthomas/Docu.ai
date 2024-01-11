@@ -2,10 +2,14 @@ import {
   S3Client,
   // This command supersedes the ListObjectsCommand and is the recommended way to list objects.
   ListObjectsV2Command,
+  PutObjectCommand
 } from "@aws-sdk/client-s3";
 import 'dotenv/config'
 import { fromIni } from '@aws-sdk/credential-providers';
+import { createReadStream } from 'fs';
 
+
+//REGION is the region of your AWS account, credentials profile is your profile name
 const client = new S3Client({
   region: process.env.REGION,
   credentials: fromIni({ profile: process.env.PROFILE }),
