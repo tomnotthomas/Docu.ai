@@ -1,6 +1,9 @@
 import { TextractClient, AnalyzeDocumentCommand } from "@aws-sdk/client-textract";
 import { fromIni } from '@aws-sdk/credential-providers';
 import 'dotenv/config'
+import RawTextOutput from '../Models/raw-ocr-output-model.js'
+
+//Takes bucket and photo into the request body
 
 //REGION is the region of your AWS account, credentials profile is your profile name
 const textractClient = new TextractClient({
@@ -24,16 +27,17 @@ const params = {
 
 const displayBlockInfo = async (response) => {
   try {
-    let words = []
+    let words = [];
     response.Blocks.forEach(block => {
       // Filter for lines and words only
-      if (block.BlockType === 'LINE' || block.BlockType === 'WORD') {
+      if (block.BlockType === 'LINE' ) {
         words.push(block.Text);
       }
      
     })
     console.log(words)
-    res.status(201).send(words);
+    const rawOutput = await RawTextOutput.create({filename: req.body.photo, text: JSON.stringify(words)})
+    res.status(201).send(rawOutput);
   } catch (err) {
     console.log("Error", err);
   }

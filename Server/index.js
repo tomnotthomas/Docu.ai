@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import express from 'express';
 import cors from 'cors';
 import router from './router.js';
@@ -14,4 +15,8 @@ app.use(express.json())
 //use routes 
 app.use(router);
 
-app.listen(3000, () => console.log('Node Api app is running on port 3000'));
+mongoose.connect('mongodb://127.0.0.1:27017/DocumentOCR')
+  .then(() => {  
+    console.log('Database Connected!'); 
+    app.listen(3000, () => console.log('Node Api app is running on port 3000'));
+  });
