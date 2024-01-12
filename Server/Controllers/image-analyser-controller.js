@@ -3,7 +3,7 @@ import { fromIni } from '@aws-sdk/credential-providers';
 import 'dotenv/config'
 import RawTextOutput from '../Models/raw-ocr-output-model.js'
 
-//Takes bucket and photo into the request body
+//Takes bucket and photo into the request body and provides text from an image
 
 //REGION is the region of your AWS account, credentials profile is your profile name
 const textractClient = new TextractClient({
@@ -28,15 +28,29 @@ const params = {
 const displayBlockInfo = async (response) => {
   try {
     let words = [];
+    let handwriting= false;
+
     response.Blocks.forEach(block => {
       // Filter for lines and words only
-      if (block.BlockType === 'LINE' ) {
-        words.push(block.Text);
+      if ( block.BlockType === 'WORD') {
+        words.push(block.Text.toLowerCase());
       }
-     
+     if (block.TextType === 'HANDWRITING'){
+      handwriting = true;
+     }
     })
-    console.log(words)
-    const rawOutput = await RawTextOutput.create({filename: req.body.photo, text: JSON.stringify(words)})
+    console.log(words);
+ 
+
+    const rawOutput = await RawTextOutput.create({
+      filename: req.body.photo,
+      text: JSON.stringify(words),
+      //If the document includes an Iban and an Account owner, it is an Invoice
+      invoice: (words.includes('kontoinhaber:') || words.includes('kontoinhaber') && words.includes('iban') || words.includes('iban:')),
+      pod: handwriting ,
+      //I will take the name of the document for now.
+      order: (words.includes('bestellung') || words.includes('bestellung:') || words.includes('transportauftrag') || words.includes('transportauftrag:') || words.includes ('transportauftrag, ') || words.includes('transportauftrag,'))
+    })
     res.status(201).send(rawOutput);
   } catch (err) {
     console.log("Error", err);

@@ -9,6 +9,18 @@ const RawOutput = new Schema ({
   text:{
     type: String,
     required: true
+  },
+  invoice: {
+    type: String,
+    required: true
+  },
+  pod: {
+    type: String,
+    required: true
+  },
+  order: {
+    type: String,
+    required: true
   }
 })
 
