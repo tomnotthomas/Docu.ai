@@ -35,6 +35,7 @@ const displayBlockInfo = async (response) => {
   try {
     let words = [];
     let handwriting= false;
+    let signature =false;
     response.Blocks.forEach(block => {
       // Filter for lines and words only
       if ( block.BlockType === 'WORD') {
@@ -44,22 +45,63 @@ const displayBlockInfo = async (response) => {
      if (block.TextType === 'HANDWRITING'){
       handwriting = true;
      }
+     //Check whether we have a signature on the document
+     if(block.BlockType === 'SIGNATURE'){
+      signature = true
+     }
     })
 
 //Find the total price (total amount for the invoice)
 function findPriceText(data) {
-  for (const item of data) {
-      if (item.Type && item.Type.Text === "PRICE") {
-          return item.ValueDetection ? item.ValueDetection.Text : null;
+  //evaluate whether the document is actually an expense document
+  //In this case, I only evaluate, whether the document is an invoice, by checking the 
+  //document name.
+  if(req.body.photo.slice(0,8) === 'Rechnung'){
+   // Iterate over each ExpenseDocument
+   for (const expenseDocument of data.ExpenseDocuments) {
+    // Check each LineItemGroup in the ExpenseDocument
+    for (const lineItemGroup of expenseDocument.LineItemGroups) {
+      // Check each LineItem in the LineItemGroup
+      for (const lineItem of lineItemGroup.LineItems) {
+        // Check each LineItemExpenseField in the LineItem
+        for (const item of lineItem.LineItemExpenseFields) {
+          if (item.Type && item.Type.Text === "PRICE") {
+            return item.ValueDetection ;
+            }
+          }
+        }
       }
+    }
   }
-  return null; // Return null if no matching price type is found
-}
+ else if (req.body.photo.slice(0,7) === 'Auftrag'){
+    // Join the text array into a single string
+    const text = words.join(" ");
+    console.log({text});
+
+    // Regular expression to match and capture monetary amounts
+    const regex = /(?<!\d[.,])(\d{1,3}(?:[.,]\d{3})*[.,]?\d*)\s*(€|eur)|€\s*(\d{1,3}(?:[.,]\d{3})*[.,]?\d*)/gi;
+
+    let highestAmount = 0;
+    let match;
+
+    // Search for all matches and determine the highest amount
+    while ((match = regex.exec(text)) !== null) {
+        const amount = parseFloat(match[1]);
+        if (amount > highestAmount) {
+            highestAmount = amount;
+        }
+    }
+
+    // Return the highest amount, or null if no amounts were found
+    return highestAmount === 0 ? null : highestAmount.toFixed(2);
+    }  
+  }
 
 
 
-const priceText = findPriceText(totalResponse.ExpenseDocuments[0].LineItemGroups[0].LineItems[0].LineItemExpenseFields);
-console.log(priceText);
+
+const priceText = findPriceText(totalResponse);
+console.log({priceText});
 
 
 
@@ -67,13 +109,22 @@ console.log(priceText);
 const rawOutput = await RawTextOutput.create({
   filename: req.body.photo,
   text: JSON.stringify(words),
-  //If the document includes an Iban and an Account owner, it is an Invoice
-  invoice: JSON.stringify({isinvoice: (words.includes('kontoinhaber:') || words.includes('kontoinhaber') && words.includes('iban') || words.includes('iban:') || req.body.photo.split(0,8) === 'Rechnung' ), price: priceText}),
-  pod: handwriting ,
-  //I will take the name of the document for now.
-  order: (words.includes('bestellung') || words.includes('bestellung:') || words.includes('transportauftrag') || words.includes('transportauftrag:') || words.includes ('transportauftrag, ') || words.includes('transportauftrag,') || req.body.photo.split(0,7)=== 'Auftrag')
+  //If the document includes an Iban and an Account owner, it is an Invoice Betrag is the amount on the invoice
+  invoice: JSON.stringify({isinvoice: (words.includes('kontoinhaber:') || words.includes('kontoinhaber') && words.includes('iban') || words.includes('iban:') || req.body.photo.slice(0,8) === 'Rechnung' ), Betrag: priceText}),
+  //If the document has handwriting and the name of the document starts with POD, true, Unterschrift means signature. Checks for that as well.
+  pod: JSON.stringify({isPOD: (req.body.photo.slice(0,3) === 'POD'), Unterschrift: signature}),
+  //if the document includes certain words or the name of the document starts with Auftrag, true, Betrag is the amount
+  order: JSON.stringify({
+    isorder:(words.includes('bestellung') ||
+    words.includes('bestellung:') ||
+    words.includes('transportauftrag') ||
+    words.includes('transportauftrag:') ||
+    words.includes ('transportauftrag, ') ||
+    words.includes('transportauftrag,') ||
+    req.body.photo.slice(0,7) === 'Auftrag'),
+    Betrag: priceText})
 }) 
-res.status(201).send(rawOutput);
+res.status(201).send(totalResponse);
   } catch (err) {
     console.log("Error", err);
   }
