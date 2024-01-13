@@ -1,0 +1,15 @@
+
+
+#box-container-info {
+  background-color: white;
+  width: 20%; 
+  height: 95%;
+  border-radius: 10px;
+  display: flex;
+  margin-right: 1%;
+  justify-content:flex-start;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  
+}
+

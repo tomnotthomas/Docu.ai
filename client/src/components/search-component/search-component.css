@@ -1,0 +1,21 @@
+#search {
+  background-color:white;
+  width: 80%;
+  height: 10%;
+  border-radius: 10px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+#search-field {
+  width:90%;
+  height:35%;
+  background-color: #ebeef6;
+  border-style:none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
