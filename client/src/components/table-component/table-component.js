@@ -5,6 +5,24 @@ function Table (){
   return (
     <div id='table'>
       <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+      <TableItem />
+
+
     </div>
   )
 }

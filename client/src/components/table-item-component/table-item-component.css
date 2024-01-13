@@ -1,10 +1,31 @@
 
 
-#table-item {
-  
-  border-style: solid;
+#table-row {
+  border-color: #ebeef6;
   border-radius: 10px;
-  height: 7%;
+  padding-top: 0.7%;
+  padding-bottom: 0.7%;
   width: 95%;
+  margin-bottom: 1%;
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
+  box-shadow: #ebeef6 0px 1px 8px 0px;
+}
 
+#table-item-icon-list{
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+.green {
+  color: #2dca93;
+
+}
+
+.red {
+  color: #f25767;
 }

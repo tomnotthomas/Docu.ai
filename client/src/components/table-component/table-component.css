@@ -1,9 +1,14 @@
 #table {
   color: black;
   background-color: white;
-  width: 80%;
+  width: 95%;
   height: 75%;
   margin-top:2%;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top:2%;
+  overflow-y:scroll;
 }

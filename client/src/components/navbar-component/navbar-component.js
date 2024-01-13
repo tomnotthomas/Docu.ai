@@ -3,12 +3,12 @@ import './navbar-component.css'
 function NavBar () {
 return (
   <div id='box-container-navbar' >
-    <div>
-      <h2 className='menu-font'>Dasboard</h2>
-      <h2 className='menu-font'>Insights</h2>
-      <h2 className='menu-font'>Wiki</h2>
-      <button>Upload</button>
+    <div id='menu-items-navbar'>
+      <h3 className='menu-font'>Dasboard</h3>
+      <h3 className='menu-font'>Insights</h3>
+      <h3 className='menu-font'>Wiki</h3>
     </div>
+    <button>Upload</button>
   </div>
 )
 
