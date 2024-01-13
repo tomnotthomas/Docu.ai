@@ -22,14 +22,12 @@ const params = {
       Name: req.body.photo
     },
   },
-  FeatureTypes: ['TABLES', 'FORMS'],
+  FeatureTypes: ['TABLES', 'FORMS', 'SIGNATURES'],
 };
 
   //if it is an invoice, we can get the total amount to be paid.
   const command = new AnalyzeExpenseCommand(params);
   const totalResponse = await textractClient.send(command);
-  const positionInArray  = totalResponse.ExpenseDocuments[0]
-  console.log({positionInArray});
 
 const displayBlockInfo = async (response) => {
   try {
@@ -50,7 +48,7 @@ const displayBlockInfo = async (response) => {
       signature = true
      }
     })
-
+    
 //Find the total price (total amount for the invoice)
 function findPriceText(data) {
   //evaluate whether the document is actually an expense document
@@ -66,7 +64,8 @@ function findPriceText(data) {
         // Check each LineItemExpenseField in the LineItem
         for (const item of lineItem.LineItemExpenseFields) {
           if (item.Type && item.Type.Text === "PRICE") {
-            return item.ValueDetection ;
+            //returns the text as key and amount of money
+            return item.ValueDetection.Text ;
             }
           }
         }
@@ -76,7 +75,6 @@ function findPriceText(data) {
  else if (req.body.photo.slice(0,7) === 'Auftrag'){
     // Join the text array into a single string
     const text = words.join(" ");
-    console.log({text});
 
     // Regular expression to match and capture monetary amounts
     const regex = /(?<!\d[.,])(\d{1,3}(?:[.,]\d{3})*[.,]?\d*)\s*(€|eur)|€\s*(\d{1,3}(?:[.,]\d{3})*[.,]?\d*)/gi;
@@ -99,10 +97,67 @@ function findPriceText(data) {
 
 
 
-
+//Check whether the document is an invoice. If it is an invoice, there shouldnt be any value for the order.
 const priceText = findPriceText(totalResponse);
-console.log({priceText});
+const testForInvoice = function (documentName) {
+  if(documentName.slice(0,8) !== 'Rechnung'){
+    return null
+  } else return priceText
+}
+const checkedpriceTextForInvoice = testForInvoice(req.body.photo);
 
+
+//check whether the document is an order. If it is an order there shouldnt be any value for the invoice.
+const testForOrder = function (documentName) {
+  if(documentName.slice(0,7) !== 'Auftrag'){
+    return null
+  } else return priceText
+}
+const checkedpriceTextForOrder = testForOrder(req.body.photo);
+
+
+//find transportnumber
+
+//This finds the Transport number. Currently only for the Jitpay invoice template.
+const findTransportNumber = async () => {
+  try {
+    const analyzeDocCommand = new AnalyzeDocumentCommand(params);
+    const response = await textractClient.send(analyzeDocCommand);
+
+    let targetBlockGeometry = null;
+    let transportNumber = null;
+
+    // First, find the block containing "Ladung lt. Transportauftrag" and get its geometry
+    for (const block of response.Blocks) {
+      if (block.BlockType === "LINE" && block.Text.includes("Ladung lt. Transportauftrag")) {
+        targetBlockGeometry = block.Geometry.BoundingBox;
+        break;
+      }
+    }
+
+    // If the target block is found, find the text in the column below it
+    if (targetBlockGeometry) {
+      for (const block of response.Blocks) {
+        if (block.BlockType === "LINE") {
+          const currentBlockGeometry = block.Geometry.BoundingBox;
+          // Check if the current block is below the target block
+          if (currentBlockGeometry.Top > targetBlockGeometry.Top + targetBlockGeometry.Height
+              && currentBlockGeometry.Left < targetBlockGeometry.Left + targetBlockGeometry.Width
+              && currentBlockGeometry.Left + currentBlockGeometry.Width > targetBlockGeometry.Left) {
+            transportNumber = block.Text;
+            break;
+          }
+        }
+      }
+    }
+
+    return transportNumber;
+  } catch (err) {
+    console.log("Error", err);
+  }
+};
+
+const foundTransportNumber = await findTransportNumber();
 
 
 
@@ -110,21 +165,22 @@ const rawOutput = await RawTextOutput.create({
   filename: req.body.photo,
   text: JSON.stringify(words),
   //If the document includes an Iban and an Account owner, it is an Invoice Betrag is the amount on the invoice
-  invoice: JSON.stringify({isinvoice: (words.includes('kontoinhaber:') || words.includes('kontoinhaber') && words.includes('iban') || words.includes('iban:') || req.body.photo.slice(0,8) === 'Rechnung' ), Betrag: priceText}),
+  invoice: JSON.stringify({
+    isinvoice: (
+      req.body.photo.slice(0,8) === 'Rechnung' ),
+    Betrag: checkedpriceTextForInvoice,
+    Transportauftragsnummer: foundTransportNumber}),
   //If the document has handwriting and the name of the document starts with POD, true, Unterschrift means signature. Checks for that as well.
-  pod: JSON.stringify({isPOD: (req.body.photo.slice(0,3) === 'POD'), Unterschrift: signature}),
+  pod: JSON.stringify({
+    isPOD: (req.body.photo.slice(0,3) === 'POD'),
+    Unterschrift: signature
+  }),
   //if the document includes certain words or the name of the document starts with Auftrag, true, Betrag is the amount
   order: JSON.stringify({
-    isorder:(words.includes('bestellung') ||
-    words.includes('bestellung:') ||
-    words.includes('transportauftrag') ||
-    words.includes('transportauftrag:') ||
-    words.includes ('transportauftrag, ') ||
-    words.includes('transportauftrag,') ||
-    req.body.photo.slice(0,7) === 'Auftrag'),
-    Betrag: priceText})
+    isorder: (req.body.photo.slice(0,7) === 'Auftrag'),
+    Betrag: checkedpriceTextForOrder})
 }) 
-res.status(201).send(totalResponse);
+res.status(201).send(rawOutput);
   } catch (err) {
     console.log("Error", err);
   }
