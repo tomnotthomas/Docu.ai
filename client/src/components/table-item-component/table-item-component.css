@@ -11,6 +11,12 @@
   align-items: center;
   justify-content:space-around;
   box-shadow: #ebeef6 0px 1px 8px 0px;
+  transition: width 0.2s ease-in-out;
+}
+
+#table-row:hover {
+  width: 97%;
+  background-color: #effbff;
 }
 
 #table-item-icon-list{
