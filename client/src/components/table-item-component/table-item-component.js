@@ -10,9 +10,9 @@ function TableItem (){
     <div id='table-row'>
       <p>isf24853g3g</p>
       <div id='table-item-icon-list'>
-        <MdCheckBox class='item-icon green'/>
-        <MdCheckBox class='item-icon green'/>
-        <CgDanger class='item-icon red'/>
+        <MdCheckBox className='item-icon green'/>
+        <MdCheckBox className='item-icon green'/>
+        <CgDanger className='item-icon red'/>
       </div>
     </div>
   )
