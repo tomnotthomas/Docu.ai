@@ -4,6 +4,7 @@ function Table (){
 
   return (
     <div id='table'>
+      //TODO table needs Bezeichnungen
       <TableItem />
       <TableItem />
       <TableItem />
