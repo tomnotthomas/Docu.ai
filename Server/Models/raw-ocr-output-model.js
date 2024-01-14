@@ -24,6 +24,6 @@ const RawOutput = new Schema ({
   }
 })
 
-const RawOutputSchema = mongoose.model('RawoutputSchema', RawOutput);
+const RawTextOutput = mongoose.model('RawoutputSchema', RawOutput);
 
-export default RawOutputSchema;
+export default RawTextOutput;

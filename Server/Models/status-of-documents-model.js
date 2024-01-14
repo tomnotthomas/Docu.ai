@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 
-const StatusOfDocuments = new Schema ({
+const Status = new Schema ({
   workpackage: {
     type: String,
     required: true
@@ -13,5 +13,8 @@ const StatusOfDocuments = new Schema ({
     required: true
   }
 })
+
+
+const StatusOfDocuments = mongoose.model('StatusOfDocumentsSchema', Status);
 
 export default StatusOfDocuments;

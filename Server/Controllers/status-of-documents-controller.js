@@ -1,12 +1,29 @@
-import StatusOfDocuments from "../Models/status-of-documents-model"
+import StatusOfDocuments from "../Models/status-of-documents-model.js"
+import RawTextOutput from "../Models/raw-ocr-output-model.js";
+
 
 const getStatusOfDocuments = async function(req, res, next) {
   //Get the name
   const name = req.body.vorgang;
   
   //TODO Get the corresponding invoice
-
+  try{
     //TODO find all invoice document pages that correspond to the name of the transaction
+    const foundInvoice = await RawTextOutput.findOne({
+      filename: 'Rechnung'+name+'-'+'0'+'.jpg'
+    })
+    console.log(foundInvoice);
+    if(foundInvoice) {
+      const invoiceData = foundInvoice.toObject();
+      res.status(201).send(JSON.stringify(invoiceData))
+    } else {
+      res.status(404).send('No matching document found')
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+
     //if it doesnt exist, return null
 
     //TODO check all documents that belong to that invoice for amount and transport number
