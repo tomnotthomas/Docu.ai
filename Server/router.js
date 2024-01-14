@@ -2,16 +2,22 @@ import express from 'express';
 import getDocuments from './Controllers/s3bucket-controller.js';
 import analyseDoc from './Controllers/image-analyser-controller.js'
 import upload from './Controllers/image-upload-controller.js'
+import getStatusOfDocuments from './Controllers/status-of-documents-controller.js'
+
 import multiparty from 'connect-multiparty'
 
 const multipartyMiddleware = multiparty();
 
 const router = express.Router();
 
-//get all the documents in the s3 bucket
+//get all the document names from the s3 bucket
 router.get('/documents', getDocuments)
-//analyse the document 
+//analyse the document and upload the information to the database
 router.post('/analysedoc', analyseDoc)
-//upload the document
+//upload the document into the s3 bucket
 router.post('/uploaddoc', multipartyMiddleware, upload)
+//Get information on the invoice, the corresponding order, and the
+//correspoinding POD document
+router.get('/statusofdocuments', getStatusOfDocuments)
+
 export default router;
