@@ -16,7 +16,6 @@ html, body {
   background-color: #ebeef6;
   overflow-x: hidden;
 
-  /* Ensures that the root elements take up the full height */
 }
 
 .container {
