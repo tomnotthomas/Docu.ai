@@ -21,7 +21,7 @@ const findFiles = async function () {
     Bucket: process.env.MY_BUCKET,
     // The default and maximum number of keys returned is 1000. This limits it to
     // one for demonstration purposes.
-    MaxKeys: 1,
+    MaxKeys: 10,
   });
 
   try {

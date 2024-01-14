@@ -169,7 +169,6 @@ const textractClient = new TextractClient({
   const foundTransportNumber = await findTransportNumber();
   
   
-  
   const rawOutput = await RawTextOutput.create({
     filename: photo,
     text: JSON.stringify(words),
@@ -210,30 +209,38 @@ const textractClient = new TextractClient({
   return analyze_document_text();
   }
 
+  
+  const analyzePageSafe = async (photo) => {
+    try {
+        return await analyzePage(photo);
+    } catch (err) {
+        console.error(`Error processing ${photo}:`, err);
+        return null; // or handle errors as appropriate
+    }
+  };
+  
 //I only want to send the whole process to run, if there is a document with that name
 const allFilesInS3 = await findFiles();
+const promises = [];
 
 //Aktuell begrenzt auf 15 Seiten
+  // Loop through the files and add them to the promises array
   for (let i = 0; i < 16; i++) {
-  let currentPhoto = `${photo}-${i}.jpg`; 
-  try {
-    if(allFilesInS3.some(file => file === currentPhoto)) {
-    const docAnalyzed = await analyzePage(currentPhoto);
-    allDocuments.push(docAnalyzed);
-    } else {
-      break; 
+    let currentPhoto = `${photo}-${i}.jpg`;
+    if (allFilesInS3.some(file => file === currentPhoto)) {
+      promises.push(analyzePageSafe(currentPhoto));
     }
+  }
+
+    // Wait for all promises to resolve
+    const allDocuments = await Promise.all(promises);
+    // Filter out null results and send the response
+    res.status(201).send(JSON.stringify(allDocuments.filter(doc => doc)));
   } catch (err) {
-    console.log(err);
-    break; 
+    console.error(err);
+    res.status(500).send('Error processing documents');
   }
 }
 
-res.status(201).send(JSON.stringify(allDocuments));
-return
-  } catch (err) {
-    console.log(err)
-  }
-}
 
 export default analyseDoc;
