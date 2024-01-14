@@ -4,34 +4,69 @@ import RawTextOutput from "../Models/raw-ocr-output-model.js";
 
 const getStatusOfDocuments = async function(req, res, next) {
   //Get the name
-  const name = req.body.vorgang;
+  const nameOfDoc = req.body.vorgang;
   
   //TODO create helper function that finds the document you are lookging for
 
 
   //TODO Get the corresponding invoice
 
-  async function findDocument(docType, name){
 
-  // TODO Loop through all pages
 
+  async function findDocument(docType, name, i){
     try{
+      console.log(docType+name+'-'+i+'.jpg')
       //TODO find all document pages that correspond to the name of the transaction
       const foundInvoice = await RawTextOutput.findOne({
-        filename: docType+name+'-'+'0'+'.jpg'
+        filename: docType+name+'-'+i+'.jpg'
       })
       console.log(foundInvoice);
       if(foundInvoice) {
         const invoiceData = foundInvoice.toObject();
-        res.status(201).send(JSON.stringify(invoiceData))
+        return JSON.stringify(invoiceData)
       } else {
-        res.status(404).send('No matching document found')
+        return false
       }
     } catch (err) {
       console.log(err);
-      res.status(500).send(err);
     }
   }
+    async function getAllPages(docType){
+      try {
+      //Loop through all the pages
+      let foundInvoices =[];
+
+      for (let i = 0; ; i++){
+        const doc = await findDocument(docType, nameOfDoc, i);
+        if(doc) {
+          foundInvoices.push(doc)
+        }  else {break}
+      }
+      return foundInvoices
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  //function that creates one large object that entails all the documents for one nameOfdoc
+  async function getAllPagesOfAllThreeDocs() {
+    try{
+      const allDocswithAllPages = ({
+        Rechnung: await getAllPages('Rechnung'),
+        Auftrag: await getAllPages('Auftrag'),
+        POD: await getAllPages('POD')
+       })
+
+      res.status(201).send(allDocswithAllPages);
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  return getAllPagesOfAllThreeDocs();
+
+  
+
     //if it doesnt exist, return null
 
     //TODO check all documents that belong to that invoice for amount and transport number
