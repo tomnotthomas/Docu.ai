@@ -6,24 +6,32 @@ const getStatusOfDocuments = async function(req, res, next) {
   //Get the name
   const name = req.body.vorgang;
   
-  //TODO Get the corresponding invoice
-  try{
-    //TODO find all invoice document pages that correspond to the name of the transaction
-    const foundInvoice = await RawTextOutput.findOne({
-      filename: 'Rechnung'+name+'-'+'0'+'.jpg'
-    })
-    console.log(foundInvoice);
-    if(foundInvoice) {
-      const invoiceData = foundInvoice.toObject();
-      res.status(201).send(JSON.stringify(invoiceData))
-    } else {
-      res.status(404).send('No matching document found')
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).send(err);
-  }
+  //TODO create helper function that finds the document you are lookging for
 
+
+  //TODO Get the corresponding invoice
+
+  async function findDocument(docType, name){
+
+  // TODO Loop through all pages
+
+    try{
+      //TODO find all document pages that correspond to the name of the transaction
+      const foundInvoice = await RawTextOutput.findOne({
+        filename: docType+name+'-'+'0'+'.jpg'
+      })
+      console.log(foundInvoice);
+      if(foundInvoice) {
+        const invoiceData = foundInvoice.toObject();
+        res.status(201).send(JSON.stringify(invoiceData))
+      } else {
+        res.status(404).send('No matching document found')
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+  }
     //if it doesnt exist, return null
 
     //TODO check all documents that belong to that invoice for amount and transport number
