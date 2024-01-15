@@ -4,8 +4,6 @@ import { CgDanger } from "react-icons/cg";
 
  function GreenOrRed({docType, info}){
 
-  
-
   //Check invoice for correctness
   const parseCheck = function (docType, info){
     const objInfo = JSON.parse(info)
