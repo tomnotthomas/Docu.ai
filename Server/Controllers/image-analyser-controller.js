@@ -221,19 +221,25 @@ const textractClient = new TextractClient({
   
 //I only want to send the whole process to run, if there is a document with that name
 const allFilesInS3 = await findFiles();
+const allFilesInS3Array = allFilesInS3[0].split(',');
+
+console.log(allFilesInS3);
 const promises = [];
 
 //Aktuell begrenzt auf 15 Seiten
   // Loop through the files and add them to the promises array
   for (let i = 0; i < 16; i++) {
     let currentPhoto = `${photo}-${i}.jpg`;
-    if (allFilesInS3.some(file => file === currentPhoto)) {
+    if ( allFilesInS3Array.some(file => file === currentPhoto)) {
+
       promises.push(analyzePageSafe(currentPhoto));
+      console.log(currentPhoto)
     }
   }
 
     // Wait for all promises to resolve
     const allDocuments = await Promise.all(promises);
+    //console.log(allDocuments)
     // Filter out null results and send the response
     res.status(201).send(JSON.stringify(allDocuments.filter(doc => doc)));
   } catch (err) {
