@@ -4,11 +4,11 @@ import { CgDanger } from "react-icons/cg";
 
 
 
-function TableItem (){
+function TableItem ({infos}){
 
   return (
     <div id='table-row'>
-      <p>isf24853g3g</p>
+      <p>{infos.workpackage}</p>
       <div id='table-item-icon-list'>
         <MdCheckBox className='item-icon green'/>
         <MdCheckBox className='item-icon green'/>

@@ -1,36 +1,27 @@
 import './table-component.css';
 import TableItem from '../table-item-component/table-item-component.js';
-function Table (){
 
+
+
+
+function Table ({ documents}){
+
+  if(documents){
+    console.log(documents)
+  }
+
+
+  //For each object in the array of documents, I have to first get the workpackage names and display them
   return (
     <div id='table'>
       <div id='table-top-row'>
-        <div class='table-top-row-heading'>
-          <h3>ID</h3>
-          <h3>Rechnung</h3>
-          <h3>Auftrag</h3>
-          <h3>POD</h3>
-          </div>
+          <h3 id='table-heading'>Identifier</h3>
+          <h3 id='table-heading'>Rechnung</h3>
+          <h3 id='table-heading'>Auftrag</h3>
+          <h3 id='table-heading'>POD</h3>
       </div>
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-      <TableItem />
-
-
+      <hr id="table-top-line"></hr>
+        {documents &&documents.map((document) =>   <TableItem infos ={document} />)}
     </div>
   )
 }
