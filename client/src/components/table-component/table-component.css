@@ -28,6 +28,15 @@
   color: #21418b;
 }
 
+  #table-heading-identifier{
+    font-size:large;
+    margin-left:0%;
+    margin-right:10%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: #21418b;
+  }
+
 hr{
   border: solid;
   width: 100%;

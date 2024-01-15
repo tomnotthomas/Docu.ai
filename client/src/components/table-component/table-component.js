@@ -3,7 +3,6 @@ import TableItem from '../table-item-component/table-item-component.js';
 
 
 
-
 function Table ({ documents}){
 
   if(documents){
@@ -15,7 +14,7 @@ function Table ({ documents}){
   return (
     <div id='table'>
       <div id='table-top-row'>
-          <h3 id='table-heading'>Identifier</h3>
+          <h3 id='table-heading-identifier'>Identifier</h3>
           <h3 id='table-heading'>Rechnung</h3>
           <h3 id='table-heading'>Auftrag</h3>
           <h3 id='table-heading'>POD</h3>

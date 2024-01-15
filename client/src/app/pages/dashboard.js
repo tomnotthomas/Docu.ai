@@ -38,7 +38,7 @@ export default function Dashboard() {
         <Search />
         <Table documents = {documents} />
       </div>
-      <Info />
+   <Info />
     </div>
   </div>
   )

@@ -25,7 +25,9 @@
   justify-content: space-around;
 }
 
-
+#table-item-fixed-identifier {
+  width:10%
+;}
 
 .green {
   color: #2dca93;
