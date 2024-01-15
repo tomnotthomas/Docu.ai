@@ -18,5 +18,5 @@ app.use(router);
 mongoose.connect('mongodb://127.0.0.1:27017/DocumentOCR')
   .then(() => {  
     console.log('Database Connected!'); 
-    app.listen(8080, () => console.log('Node Api app is running on port 3000'));
+    app.listen(8080, () => console.log('Node Api app is running on port 8080'));
   });
