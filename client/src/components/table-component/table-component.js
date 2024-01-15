@@ -5,9 +5,13 @@ function Table (){
   return (
     <div id='table'>
       <div id='table-top-row'>
-        <h3 class='table-top-row-heading'></h3>
+        <div class='table-top-row-heading'>
+          <h3>ID</h3>
+          <h3>Rechnung</h3>
+          <h3>Auftrag</h3>
+          <h3>POD</h3>
+          </div>
       </div>
-      //TODO table needs Bezeichnungen
       <TableItem />
       <TableItem />
       <TableItem />

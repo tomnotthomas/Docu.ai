@@ -8,7 +8,7 @@ function Header(){
     <div id='header-component'>  
       <div id='header-component-left'>
       <MdOutlineDocumentScanner id='MdOutlineDocumentScanner' />
-      <h1>DocuMan</h1>
+      <h1>Docu.ai</h1>
       </div>
       <div id='header-component-right'>
         <div id = 'header-component-options'>
