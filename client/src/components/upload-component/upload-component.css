@@ -1,0 +1,45 @@
+
+
+#upload-window {
+  width: 90%;
+  height: 60%;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#drag-drop {
+  border-style: dashed;
+  border-width: 1px;
+  border-color: #21418b;
+  width:90%;
+  height: 80%;
+  border-radius: 10px;
+  background-color: #effbff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#document-upload {
+  color: #21418b;
+}
+
+#upload {
+  padding-top: 11vh;
+  padding-bottom: 11vh;
+  padding-left: 45vb;
+  padding-right: 45vb;
+  height:100%;
+  border-style: dashed;
+  border-radius: 10px;
+  background-color: #effbff;
+  border-width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}

@@ -3,18 +3,16 @@
 #table-row {
   border-radius: 10px;
   padding-top: 0.2%;
-  padding-bottom: 0.2%;
-  width: 95%;
+  width: 94%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:space-around;
 }
 
 #table-row-item-icons {
   border-color: #ebeef6;
   border-radius: 10px;
-  width: 100%;
+  width: 92%;
   margin-bottom: 1%;
   display: flex;
   flex-direction: row;
@@ -60,5 +58,6 @@
   transition: opacity 0.5s ease, visibility 0.5s;
   width: 100%;
   display: flex;
-  justify-content:center;
+  justify-content:flex-start;
+  
 }
