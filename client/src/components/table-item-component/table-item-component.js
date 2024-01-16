@@ -2,6 +2,8 @@ import './table-item-component.css';
 import { MdCheckBox } from "react-icons/md";
 import { CgDanger } from "react-icons/cg";
 import Info from '../info-component/info-component';
+import { useState } from 'react';
+
 
  function GreenOrRed({docType, info}){
 
@@ -103,7 +105,7 @@ function allInfo (info){
         console.log(wholeObj[docType])
     const pages = wholeObj[docType]
     if(pages.length < 1) {
-      return {gefunden: "Nein", betrag:'nicht gefunden', auftragsNummer: 'nicht gefunden', Unterschrift: 'nicht gefunden', betragIstGleich: 'nicht gefunden'}
+      return {gefunden: "Nein", betrag:'Nicht gefunden', auftragsNummer: 'Nicht gefunden', Unterschrift: 'Nicht gefunden', betragIstGleich: 'Nicht gefunden'}
     }
 
       let betrag = 'Nicht gefunden';
@@ -125,10 +127,10 @@ function allInfo (info){
         console.log(transportAuftragsNummer)
         }
       })
-      return {gefunden: 'ja', betrag: betrag, auftragsNummer: transportAuftragsNummer}
+      return {gefunden: 'Ja', betrag: betrag, auftragsNummer: transportAuftragsNummer}
     }
 
-      let unterschrift = ' Unterschrift nicht gefunden';
+      let unterschrift = 'Nicht gefunden';
     if (docType === 'POD') {
       pages.forEach((page) => {
         const parsed=JSON.parse(page)
@@ -136,9 +138,9 @@ function allInfo (info){
         const parsedPod = (parsed.pod)
         const podDetails = JSON.parse(parsedPod);
         console.log(podDetails);
-        unterschrift ="Unterschrift gefunden"
+        unterschrift ="Gefunden"
       })
-      return {gefunden: 'ja', Unterschrift: unterschrift}
+      return {gefunden: 'Ja', Unterschrift: unterschrift}
 
     }
 
@@ -156,7 +158,7 @@ function allInfo (info){
            comparedBetrag = orderDetails.Betrag;
         }
       })
-        return {gefunden: 'ja', betragIstGleich: comparedBetrag}
+        return {gefunden: 'Ja', betragIstGleich: comparedBetrag}
     }
   }
 
@@ -176,11 +178,18 @@ function allInfo (info){
 
 
 export default function TableItem ({infos}){
+
+  const [show, setShow] = useState(false);
+
+  const toggle =() => {
+    setShow(!show)
+  }
+
   const data = JSON.parse(infos.documents)
   const infoForInfoComponent = allInfo(infos.documents)
 
   return (
-    <div id='table-row' >
+    <div id='table-row' onClick={toggle}>
     <div id= 'table-row-item-icons'>
       <p id ='table-item-fixed-identifier'>{infos.workpackage}</p>
       <div id='table-item-icon-list'>
@@ -199,8 +208,9 @@ export default function TableItem ({infos}){
        
       </div>
     </div>
-    <Info
-      detailedInfo = {infoForInfoComponent} />
+    {show &&  <Info
+      detailedInfo = {infoForInfoComponent} />}
+   
     </div>
   )
 }
