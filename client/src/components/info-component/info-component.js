@@ -13,10 +13,18 @@ return (
         <div className='centered-row white'>
           <FaRegCheckCircle className='box-container-info-item-icon' />
           <p className='white'>
+            Dokument vorhanden: {detailedInfo[0].Rechnung.gefunden}
+          </p>
+         
+        </div>
+        <div className='centered-row white'>
+          <FaRegCheckCircle className='box-container-info-item-icon' />
+          <p className='white'>
             Betrag: {detailedInfo[0].Rechnung.betrag}
           </p>
          
         </div>
+        
         <div className='centered-row white'>
           <FaRegCheckCircle className='box-container-info-item-icon' />
           
@@ -24,6 +32,7 @@ return (
           Auftragsnummer: {detailedInfo[0].Rechnung.auftragsNummer}
          </p>
         </div>
+        
 
 
 
@@ -32,6 +41,13 @@ return (
       </div>
       <div className='box-container-info-item green-info-item'>
       <h3 className='white'>Transportauftrag</h3>
+      <div className='centered-row white'>
+          <FaRegCheckCircle className='box-container-info-item-icon' />
+          <p className='white'>
+            Dokument vorhanden: {detailedInfo[1].Auftrag.gefunden}
+          </p>
+         
+        </div>
       <div className='centered-row white'>
           <FaRegCheckCircle className='box-container-info-item-icon' />
           <p className='white'>
@@ -45,6 +61,13 @@ return (
       </div>
       <div className='box-container-info-item red-info-item'>
         <h3 className='white'>Abliefernachweis</h3>
+        <div className='centered-row white'>
+          <FaRegCheckCircle className='box-container-info-item-icon' />
+          <p className='white'>
+            Dokument vorhanden: {detailedInfo[2].POD.gefunden}
+          </p>
+         
+        </div>
         <div className='centered-row white'>
           <FaRegCheckCircle className='box-container-info-item-icon' />
           <p className='white'>

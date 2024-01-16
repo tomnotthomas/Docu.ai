@@ -102,6 +102,9 @@ function allInfo (info){
     const wholeObj = parseCheck(docType, info)
         console.log(wholeObj[docType])
     const pages = wholeObj[docType]
+    if(pages.length < 1) {
+      return {gefunden: "Nein", betrag:'nicht gefunden', auftragsNummer: 'nicht gefunden', Unterschrift: 'nicht gefunden', betragIstGleich: 'nicht gefunden'}
+    }
 
       let betrag = 'Nicht gefunden';
       let transportAuftragsNummer ='Nicht gefunden';
@@ -117,14 +120,15 @@ function allInfo (info){
         console.log(invDetails)
         betrag = invDetails.Betrag;
         console.log(betrag)
+        if(invDetails.TransportAuftragsNummer){
         transportAuftragsNummer = invDetails.TransportAuftragsNummer
         console.log(transportAuftragsNummer)
-      
+        }
       })
-      return {betrag: betrag, auftragsNummer: transportAuftragsNummer}
+      return {gefunden: 'ja', betrag: betrag, auftragsNummer: transportAuftragsNummer}
     }
 
-      let unterschrift = ' Unterschrift Nicht gefunden';
+      let unterschrift = ' Unterschrift nicht gefunden';
     if (docType === 'POD') {
       pages.forEach((page) => {
         const parsed=JSON.parse(page)
@@ -134,7 +138,7 @@ function allInfo (info){
         console.log(podDetails);
         unterschrift ="Unterschrift gefunden"
       })
-      return {Unterschrift: unterschrift}
+      return {gefunden: 'ja', Unterschrift: unterschrift}
 
     }
 
@@ -152,7 +156,7 @@ function allInfo (info){
            comparedBetrag = orderDetails.Betrag;
         }
       })
-        return {betragIstGleich: comparedBetrag}
+        return {gefunden: 'ja', betragIstGleich: comparedBetrag}
     }
   }
 
