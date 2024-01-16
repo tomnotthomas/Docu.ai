@@ -185,6 +185,8 @@ export default function TableItem ({infos}){
     setShow(!show)
   }
 
+  const infoEffect = show ? 'info-visible' : 'info-hidden';
+
   const data = JSON.parse(infos.documents)
   const infoForInfoComponent = allInfo(infos.documents)
 
@@ -208,9 +210,9 @@ export default function TableItem ({infos}){
        
       </div>
     </div>
-    {show &&  <Info
-      detailedInfo = {infoForInfoComponent} />}
-   
+    <div className={infoEffect}>
+    {show &&  <Info detailedInfo = {infoForInfoComponent} />}
+    </div>
     </div>
   )
 }
