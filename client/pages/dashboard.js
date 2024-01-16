@@ -1,6 +1,6 @@
 'use client';
 
-import '../globals.css'
+import '../styles/globals.css';
 import NavBar from '@/components/navbar-component/navbar-component';
 import Table from '@/components/table-component/table-component';
 import Search from '@/components/search-component/search-component.js';

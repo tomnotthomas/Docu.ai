@@ -38,9 +38,9 @@
   }
 
 hr{
-  border: solid;
+  border: none;
   width: 100%;
-  height:2px;
-  color:  #ebeef6;
+  height:1px;
+  background-color:  #ebeef6;
   margin-bottom: 4%;
 }

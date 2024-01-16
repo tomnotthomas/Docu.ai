@@ -1,9 +1,10 @@
 #box-container-info {
   background-color: white;
   
-  width: 95%; 
-  height: 85%;
+  width: 790%; 
+  height: 60%;
   border-radius: 10px;
+  margin-top: 5%;
   display: flex;
   flex-direction: row;
   margin-right: 1%;
@@ -13,11 +14,13 @@
 }
 
 .box-container-info-item{
+  display: flex;
+  flex-direction: column;
   word-wrap: break-word;
   border-style: solid;
   border-color: aliceblue;
   border-radius: 10px;
-  padding:5%;
+  padding:1%;
   width: 85%;
   height: 100%;
   
@@ -33,7 +36,8 @@
 
 .white {
   color:white;
- 
+  padding: 0%;
+
 }
 
 .box-container-info-item-icon {
@@ -42,5 +46,8 @@
 
 .centered-row {
   display: flex;
+  flex-direction:row;
   align-content: center;
+  align-items:center;
+  height:20%;
 }
