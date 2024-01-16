@@ -2,7 +2,10 @@ import './info-component.css'
 import { FaRegCheckCircle } from "react-icons/fa";
 import { IoMdAlert } from "react-icons/io";
 
-function Info () {
+function Info ({detailedInfo}) {
+
+  console.log(detailedInfo)
+
 return (
   <div id='box-container-info' >
       <div className='box-container-info-item green-info-item'>
@@ -10,32 +13,44 @@ return (
         <div className='centered-row white'>
           <FaRegCheckCircle className='box-container-info-item-icon' />
           <p className='white'>
-            Rechnungsbetrag unter 2000Eur
+            Betrag: {detailedInfo[0].Rechnung.betrag}
           </p>
+         
         </div>
+        <div className='centered-row white'>
+          <FaRegCheckCircle className='box-container-info-item-icon' />
+          
+        <p className='white'>
+          Auftragsnummer: {detailedInfo[0].Rechnung.auftragsNummer}
+         </p>
+        </div>
+
+
+
+
+        
       </div>
       <div className='box-container-info-item green-info-item'>
       <h3 className='white'>Transportauftrag</h3>
       <div className='centered-row white'>
           <FaRegCheckCircle className='box-container-info-item-icon' />
           <p className='white'>
-            Frachtpreis stimmt mit Rechnung überein.
+            Gefundener Betrag: {detailedInfo[1].Auftrag.betragIstGleich}
           </p>
+         
         </div>
-        <div className='centered-row white'>
-          <FaRegCheckCircle className='box-container-info-item-icon' />
-          <p className='white'>
-            Firmierung stimmt mit Rechnung überein.
-          </p>
-        </div>
+      
+
+
       </div>
       <div className='box-container-info-item red-info-item'>
         <h3 className='white'>Abliefernachweis</h3>
         <div className='centered-row white'>
-          <IoMdAlert className='box-container-info-item-icon' />
+          <FaRegCheckCircle className='box-container-info-item-icon' />
           <p className='white'>
-            Keine passende Auftrags- nummer gefunden.
+            Unterschrift: {detailedInfo[2].POD.Unterschrift}
           </p>
+         
         </div>
       </div>
   </div>
