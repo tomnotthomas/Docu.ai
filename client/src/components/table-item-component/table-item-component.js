@@ -1,6 +1,7 @@
 import './table-item-component.css';
 import { MdCheckBox } from "react-icons/md";
 import { CgDanger } from "react-icons/cg";
+import Info from '../info-component/info-component';
 
  function GreenOrRed({docType, info}){
 
@@ -90,7 +91,8 @@ if(docType === 'Auftrag' && comparedBetrag) {
 export default function TableItem ({infos}){
   const data = JSON.parse(infos.documents)
   return (
-    <div id='table-row'>
+    <div id='table-row' >
+    <div id= 'table-row-item-icons'>
       <p id ='table-item-fixed-identifier'>{infos.workpackage}</p>
       <div id='table-item-icon-list'>
         <GreenOrRed 
@@ -108,7 +110,8 @@ export default function TableItem ({infos}){
        
       </div>
     </div>
-  
+    <Info />
+    </div>
   )
 }
  

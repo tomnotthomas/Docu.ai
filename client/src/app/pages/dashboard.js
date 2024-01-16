@@ -14,6 +14,7 @@ import React, { useState, useEffect } from 'react'
 export default function Dashboard() {
 
   const [documents, setDocuments] = useState([]);
+ 
 
   useEffect(() => {
 
@@ -29,6 +30,8 @@ export default function Dashboard() {
   }, [])
 
 
+
+
   return (
   <div className = 'container-dashboard-all'>  
     <Header />
@@ -38,7 +41,6 @@ export default function Dashboard() {
         <Search />
         <Table documents = {documents} />
       </div>
-   <Info />
     </div>
   </div>
   )

@@ -1,20 +1,33 @@
 
 
 #table-row {
-  border-color: #ebeef6;
   border-radius: 10px;
   padding-top: 0.7%;
   padding-bottom: 0.7%;
   width: 95%;
   margin-bottom: 1%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:space-around;
+}
+
+#table-row-item-icons {
+  border-color: #ebeef6;
+  border-radius: 10px;
+  padding-top: 0.7%;
+  padding-bottom: 0.7%;
+  width: 100%;
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content:space-around;
   box-shadow: #ebeef6 0px 1px 8px 0px;
   transition: width 0.2s ease-in-out;
 }
 
-#table-row:hover {
+#table-row-item-icons:hover {
   width: 97%;
   background-color: #effbff;
 }

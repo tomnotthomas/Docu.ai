@@ -1,10 +1,11 @@
 #box-container-info {
   background-color: white;
-  width: 20%; 
-  height: 95%;
+  
+  width: 95%; 
+  height: 70%;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-right: 1%;
   justify-content:center;
   align-items: center;
@@ -18,7 +19,7 @@
   border-radius: 10px;
   padding:5%;
   width: 85%;
-  height: 28%;
+  height: 100%;
 }
 
 .green-info-item {
