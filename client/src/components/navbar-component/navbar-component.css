@@ -44,19 +44,20 @@
   justify-content:space-around;
   background-color:  #2dca93;
   border-radius: 10px;
-  color: white;
+  color: #effbff;
   padding-left: 10%;
   padding-right: 10%;
   padding-top: 5%;
   padding-bottom:5%;
   font-size:large;
   font-family: serif;
+  text-decoration: none;
 
 }
 
 .navbar-icon {
   font-size: x-large;
-  background-color: white;
+  background-color: #effbff;
   border-radius: 100%;
   padding: 3%;
   color:#3f78f8;
