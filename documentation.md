@@ -7,9 +7,9 @@
 3. Enable Textract:
 Follow the documentation:
 https://docs.aws.amazon.com/textract/latest/dg/getting-started.html
- 4.       Create an S3 bucket:
+ 4. Create an S3 bucket:
 Follow the documentation:
-https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html
+  https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html
 5. Go to the Server directory and install all dependencies
 6. Create an .env file with the following:
   REGION =  Insert the region of your AWS account here
