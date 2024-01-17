@@ -203,8 +203,10 @@ const textractClient = new TextractClient({
       return entireOutput;
     } catch (err) {
       console.log("Error", err);
+      throw err;
     }
   };
+  
   console.log(analyze_document_text())
   return analyze_document_text();
   }
@@ -241,7 +243,7 @@ const promises = [];
     const allDocuments = await Promise.all(promises);
     //console.log(allDocuments)
     // Filter out null results and send the response
-    res.status(201).send(JSON.stringify(allDocuments.filter(doc => doc)));
+    res.status(201).send(("Poper analysis done"));
   } catch (err) {
     console.error(err);
     res.status(500).send('Error processing documents');
