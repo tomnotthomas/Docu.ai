@@ -15,7 +15,7 @@ function NavBar () {
 return (
   <div id='box-container-navbar' >
     <div id='menu-items-navbar'>
-      <Link href='/dashboard'>
+      <Link className='link' href='/dashboard'>
         <h2 className='menu-font'>
         <RiDashboard2Line className='navbar-icon'/>
         Dasboard</h2>

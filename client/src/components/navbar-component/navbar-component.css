@@ -19,7 +19,7 @@
   color: #3f78f8;
   padding-right: 2%;
   padding-left: 5%;
-
+  text-decoration: none;
   border-radius: 10px;
   transform: scale(1.05); /* Slightly increase the size */
 }
@@ -50,16 +50,21 @@
   padding-top: 5%;
   padding-bottom:5%;
   font-size:large;
-  text-decoration: none;
   font-family: serif;
 
 }
 
 .navbar-icon {
   font-size: x-large;
-  background-color: #effbff;
+  background-color: white;
   border-radius: 100%;
   padding: 3%;
   color:#3f78f8;
   margin-right: 5%;
+}
+
+
+
+.link {
+  text-decoration: none;
 }
