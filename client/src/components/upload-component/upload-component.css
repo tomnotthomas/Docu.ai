@@ -29,11 +29,12 @@
 }
 
 #upload {
-  padding-top: 11vh;
-  padding-bottom: 11vh;
-  padding-left: 45vb;
-  padding-right: 45vb;
-  height:100%;
+  position: relative;
+  padding-top: 13vh;
+  padding-bottom: 13vh;
+  padding-left: 30vb;
+  padding-right: 30vb;
+  height:50%;
   border-style: dashed;
   border-radius: 10px;
   background-color: #effbff;
@@ -42,4 +43,10 @@
   align-items: center;
   justify-content: center;
 
+}
+
+#upload-status {
+  background-color: #2dca93;
+  border-radius: 10px;
+  padding: 0.5%;
 }

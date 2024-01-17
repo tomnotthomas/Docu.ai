@@ -1,15 +1,37 @@
 import './navbar-component.css'
+import { FaCloudUploadAlt } from "react-icons/fa";
+import Link from 'next/link';
+import { RiDashboard2Line } from "react-icons/ri";
+import { MdInsights } from "react-icons/md";
+import { ImWikipedia } from "react-icons/im";
+
+
 
 function NavBar () {
+
+
+ 
+
 return (
   <div id='box-container-navbar' >
     <div id='menu-items-navbar'>
-      <h3 className='menu-font'>Dasboard</h3>
-      <h3 className='menu-font'>Insights</h3>
-      <h3 className='menu-font'>Wiki</h3>
+      <Link href='/dashboard'>
+        <h2 className='menu-font'>
+        <RiDashboard2Line className='navbar-icon'/>
+        Dasboard</h2>
+    </Link>
+      <h2 className='menu-font'>
+        <MdInsights className='navbar-icon'/>
+      Einsichten</h2>
+      <h2 className='menu-font'>
+        <ImWikipedia className='navbar-icon'/>
+      Wiki</h2>
     </div>
-    <button>Upload</button>
+    <Link href='/upload' className='uploadButton'>
+      <FaCloudUploadAlt />
+      Upload</Link>
   </div>
+  
 )
 
 }

@@ -5,17 +5,24 @@
 }
 
 .menu-font {
-  color: white;
-  margin-top:10%;
-  border-bottom-style:solid;
-  border-width: 1px;
-  border-color:#ebeef6;
-  font-size:medium;
-  font-weight: 150;
-  display:flex;
-  justify-content: center;
+  color: #ebeef6;
+  font-size: large;
+  margin-left: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition for background-color and transform */
 }
 
+.menu-font:hover {
+  background-color: #effbff;
+  color: #3f78f8;
+  padding-right: 2%;
+  padding-left: 5%;
+
+  border-radius: 10px;
+  transform: scale(1.05); /* Slightly increase the size */
+}
 
 #box-container-navbar {
   background-color: #3f78f8;
@@ -28,7 +35,31 @@
   align-items: center;
   justify-content: space-evenly;
   margin-left: 1%;
-  
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
+.uploadButton{
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
+  background-color:  #2dca93;
+  border-radius: 10px;
+  color: white;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5%;
+  padding-bottom:5%;
+  font-size:large;
+  text-decoration: none;
+  font-family: serif;
+
+}
+
+.navbar-icon {
+  font-size: x-large;
+  background-color: #effbff;
+  border-radius: 100%;
+  padding: 3%;
+  color:#3f78f8;
+  margin-right: 5%;
+}

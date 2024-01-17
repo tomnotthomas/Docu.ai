@@ -4,7 +4,7 @@
   height: 10%;
   border-radius: 10px;
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
@@ -13,13 +13,15 @@
 
 
 #search-field {
-  width:90%;
-  height:35%;
+  width:80%;
+  height:50%;
   background-color: #ebeef6;
   border-style:none;
   border-radius: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-right:2%;
   transition: font-size 0.15s ease-in-out, height 0.15s ease-in-out;
 }
 
