@@ -1,5 +1,5 @@
 
-#README
+# README
 
 1. Create an AWS account
 2. If you’re using VSCode, you can connect to AWS with a plugin called AWS Toolkit named: AWS Toolkit - Amazon Q, CodeWhisperer, and more
