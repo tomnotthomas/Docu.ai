@@ -1,7 +1,7 @@
 
 # README
 
-1. Create an AWS account
+1. Create an AWS account. You can find some information about it here:https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-creating.html
 2. If you’re using VSCode, you can connect to AWS with a plugin called AWS Toolkit named: AWS Toolkit - Amazon Q, CodeWhisperer, and more
 
 3. Enable Textract:
