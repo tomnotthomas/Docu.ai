@@ -50,9 +50,14 @@
   padding-top: 5%;
   padding-bottom:5%;
   font-size:large;
+  font-weight: 600;
   font-family: serif;
   text-decoration: none;
-
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition for background-color and transform */
+  
+}
+.uploadButton:hover{
+  transform: scale(1.05);
 }
 
 .navbar-icon {
