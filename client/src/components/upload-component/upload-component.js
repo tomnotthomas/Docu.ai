@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import './upload-component.css';
-import 'dotenv/config'
-
 
 const fileTypes = ["JPG", "PDF"];
 
