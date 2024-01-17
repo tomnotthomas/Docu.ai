@@ -43,7 +43,7 @@ import { useState } from 'react';
     return <CgDanger className='item-icon red'/>
   }
 
-    let unterschrift;
+    let unterschrift = undefined;
   if (docType === 'POD') {
     pages.forEach((page) => {
       const parsed=JSON.parse(page)
@@ -56,7 +56,7 @@ import { useState } from 'react';
   }
 
 
-  if(docType === 'POD' && unterschrift) {
+  if(docType === 'POD' && unterschrift !== undefined) {
     return <MdCheckBox className='item-icon green'/>
   } else if(docType === 'POD') {
     return <CgDanger className='item-icon red'/>
