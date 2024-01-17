@@ -29,7 +29,7 @@ return (
     </div>
     <Link href='/upload' className='uploadButton'>
       <FaCloudUploadAlt />
-      Upload</Link>
+      Hochladen</Link>
   </div>
   
 )
