@@ -36,6 +36,8 @@
   padding-right: 30vb;
   height:50%;
   border-style: dashed;
+  border-color: #80d9f7;
+
   border-radius: 10px;
   background-color: #effbff;
   border-width: 1px;
@@ -49,4 +51,9 @@
   background-color: #2dca93;
   border-radius: 10px;
   padding: 0.5%;
+}
+
+#upload-upload-icon {
+  font-size: xxx-large;
+  color:#21418b;
 }

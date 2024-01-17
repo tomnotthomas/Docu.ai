@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import './upload-component.css';
 import  'dotenv/config'
+import { TiUploadOutline } from "react-icons/ti";
+
 const fileTypes = ["JPG", "PDF"];
 
 function DragDrop() {
@@ -105,7 +107,8 @@ function DragDrop() {
           types={fileTypes}
           label={"Zieh die Dokumente hier hinein"}
           onTypeError={(err) => console.error("Es werden nur pdf und .png Dateien unterstützt")}
-          children={<div id='upload'>Dokumente hinein ziehen </div>}
+          children={<div id='upload'><TiUploadOutline id='upload-upload-icon' />
+         <p> Dokumente hinein ziehen </p> </div>}
         />
       </div>
     </div>
