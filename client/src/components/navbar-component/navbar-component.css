@@ -17,8 +17,8 @@
 .menu-font:hover {
   background-color: #effbff;
   color: #3f78f8;
-  padding-right: 2%;
-  padding-left: 5%;
+  padding-right: 0%;
+  padding-left: 0%;
   text-decoration: none;
   border-radius: 10px;
   transform: scale(1.05); /* Slightly increase the size */
