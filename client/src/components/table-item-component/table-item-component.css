@@ -1,0 +1,64 @@
+
+
+#table-row {
+  border-radius: 10px;
+  padding-top: 0.2%;
+  width: 94%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#table-row-item-icons {
+  border-color: #ebeef6;
+  border-radius: 10px;
+  width: 92%;
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-around;
+  box-shadow: #ebeef6 0px 1px 8px 0px;
+  transition: width 0.2s ease-in-out;
+}
+
+#table-row-item-icons:hover {
+  width: 97%;
+  background-color: #effbff;
+}
+
+#table-item-icon-list{
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#table-item-fixed-identifier {
+  width:10%
+;}
+
+.green {
+  color: #2dca93;
+
+}
+
+.red {
+  color: #f25767;
+}
+
+.info-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.info-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0.5s;
+  width: 100%;
+  padding-left: 0%;
+  display: flex;
+  justify-content:flex-start;
+  
+}
