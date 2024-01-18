@@ -15,7 +15,7 @@ const textractClient = new TextractClient({
   const analyseDoc = async function (req, res, next) {
     console.log(req.body.photo)
     let photo = req.body.photo;
-    const Bucket = req.body.bucket;
+    const Bucket = process.env.MY_BUCKET;
     let allDocuments = [];
   try{
  
