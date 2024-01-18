@@ -116,3 +116,5 @@ function DragDrop() {
 }
 
 export default DragDrop;
+
+//TODO gefundener Betrag bei transportauftrag muss mit der Rechnung übereinstimmen. Ansonsten ist es auch rot

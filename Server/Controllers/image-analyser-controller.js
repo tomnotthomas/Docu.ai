@@ -5,7 +5,7 @@ import RawTextOutput from "../Models/raw-ocr-output-model.js";
 import findFiles from "../Helpers/s3-find-files.js";
 //Takes bucket and photo into the request body and provides text from an image
 
-//REGION is the region of your AWS account, credentials profile is your profile name
+//REGION is the region of your S3 Account!!, credentials profile is your profile name
 const textractClient = new TextractClient({
   region: process.env.REGION,
   credentials: fromIni({ profile: process.env.PROFILE }),
