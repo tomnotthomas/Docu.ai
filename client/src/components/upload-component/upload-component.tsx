@@ -6,7 +6,7 @@ import { TiUploadOutline } from "react-icons/ti";
 
 const fileTypes = ["JPG", "PDF"];
 
-function DragDrop() {
+function DragDrop() : React.ReactNode {
   const [file, setFile] = useState(null);
   const [uploadStatus, setUploadStatus] = useState('');
 
@@ -95,8 +95,8 @@ function DragDrop() {
     }
   };
 
-  return (
-    <div id='upload-window'>
+  return ( <div 
+    id='upload-window'>
       <h2 id='document-upload'>Dokumente hochladen</h2>
       {uploadStatus && <div id='upload-status'>{uploadStatus}</div>}
       <div>
@@ -111,8 +111,7 @@ function DragDrop() {
          <p> Dokumente hinein ziehen </p> </div>}
         />
       </div>
-    </div>
-  )
+    </div> );
 }
 
 export default DragDrop;
