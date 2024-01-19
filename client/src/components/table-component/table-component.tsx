@@ -1,15 +1,10 @@
 import './table-component.css';
 import TableItem from '../table-item-component/table-item-component';
+import { DocumentItem } from '../../../types/custom-types.d';
 
-type Document = {
-  documents : string;
-  workpackage: string;
-  __v : number;
-  _id : string;
-};
 
 type TableProps = {
-  documents : Document[]
+  documents : DocumentItem[]
 }
 
 const Table: React.FC<TableProps> = ({documents}) => {

@@ -4,14 +4,13 @@ import NavBar from "@/components/navbar-component/navbar-component";
 import DragDrop from '@/components/upload-component/upload-component';
 
 
-function Upload() {
-
+function Upload() : React.ReactNode {
 
   return (
- 
-    <div className = 'container-dashboard-all'>  
+
+    <div className = 'container-dashboard-all'>
         <Header />
-      <div className='container'> 
+      <div className='container'>
             <NavBar />
       <div className='container-box'>
             <DragDrop />
