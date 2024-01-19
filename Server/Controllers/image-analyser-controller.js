@@ -27,7 +27,7 @@ const textractClient = new TextractClient({
   const params = {
     Document: {
       S3Object: {
-        Bucket: req.body.bucket,
+        Bucket: process.env.MY_BUCKET,
         Name: photo
       },
     },
@@ -36,6 +36,7 @@ const textractClient = new TextractClient({
   
     //if it is an invoice, we can get the total amount to be paid.
     const command = new AnalyzeExpenseCommand(params);
+    console.log( command.input.Document);
     const totalResponse = await textractClient.send(command);
   
   const displayBlockInfo = async (response) => {
