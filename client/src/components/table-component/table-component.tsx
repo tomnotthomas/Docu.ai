@@ -1,9 +1,18 @@
 import './table-component.css';
-import TableItem from '../table-item-component/table-item-component.js';
+import TableItem from '../table-item-component/table-item-component';
 
+type Document = {
+  documents : string;
+  workpackage: string;
+  __v : number;
+  _id : string;
+};
 
+type TableProps = {
+  documents : Document[]
+}
 
-function Table ({ documents}){
+const Table: React.FC<TableProps> = ({documents}) => {
 
   if(documents){
     console.log(documents)
