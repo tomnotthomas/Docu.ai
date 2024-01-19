@@ -7,13 +7,12 @@ import Search from '@/components/search-component/search-component';
 import Info from '@/components/info-component/info-component';
 import Header from '@/components/header-component/header-component';
 import React, { useState, useEffect } from 'react'
+import { DocumentItem } from '../types/custom-types.d';
 
 
+export default function Dashboard() : React.ReactNode {
 
-
-export default function Dashboard() {
-
-  const [documents, setDocuments] = useState([]);
+  const [documents, setDocuments] = useState<DocumentItem[]>([]);
 
 
   useEffect(() => {
