@@ -3,7 +3,7 @@
 import '../styles/globals.css';
 import NavBar from '@/components/navbar-component/navbar-component';
 import Table from '@/components/table-component/table-component';
-import Search from '@/components/search-component/search-component.js';
+import Search from '@/components/search-component/search-component';
 import Info from '@/components/info-component/info-component';
 import Header from '@/components/header-component/header-component';
 import React, { useState, useEffect } from 'react'
@@ -14,7 +14,7 @@ import React, { useState, useEffect } from 'react'
 export default function Dashboard() {
 
   const [documents, setDocuments] = useState([]);
- 
+
 
   useEffect(() => {
 
@@ -33,9 +33,9 @@ export default function Dashboard() {
 
 
   return (
-  <div className = 'container-dashboard-all'>  
+  <div className = 'container-dashboard-all'>
     <Header />
-    <div className='container'> 
+    <div className='container'>
         <NavBar />
       <div className='container-box'>
         <Search />

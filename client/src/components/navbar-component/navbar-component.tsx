@@ -7,10 +7,10 @@ import { ImWikipedia } from "react-icons/im";
 
 
 
-function NavBar () {
+function NavBar () : React.ReactNode {
 
 
- 
+
 
 return (
   <div id='box-container-navbar' >
@@ -31,7 +31,7 @@ return (
       <FaCloudUploadAlt />
       Hochladen</Link>
   </div>
-  
+
 )
 
 }

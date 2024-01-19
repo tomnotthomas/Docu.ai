@@ -2,10 +2,15 @@ import './info-component.css'
 import { FaRegCheckCircle } from "react-icons/fa";
 import { IoMdAlert } from "react-icons/io";
 
+type GoodOrBadProps = {
+  detailedInfo: { [key: string]: any }[];
+  docType: string;
+  children: React.ReactNode;
+};
 
-function GoodOrBad ({detailedInfo, docType, children}) {
+const GoodOrBad: React.FC<GoodOrBadProps> = ({detailedInfo, docType, children}) => {
 
-  
+
 
   //Check Rechnung for correctness
   if(
@@ -19,40 +24,39 @@ function GoodOrBad ({detailedInfo, docType, children}) {
     } else if (docType === 'Rechnung') {
       return <div className= 'box-container-info-item red-info-item'>{children}</div>
     }
-  
+
 
   if(docType === 'Auftrag' &&
     detailedInfo[1].Auftrag.gefunden === 'Ja' &&
     detailedInfo[1].Auftrag.betragIstGleich
     ) {
       return <div className='box-container-info-item green-info-item'>{children}</div>
-  
+
       } else if (docType === 'Auftrag') {
         return <div className= 'box-container-info-item red-info-item'>{children}</div>
       }
-  
+
 
       if(docType === 'POD' &&
       detailedInfo[2].POD.gefunden === 'Ja' &&
       detailedInfo[2].POD.Unterschrift
       ) {
         return <div className='box-container-info-item green-info-item'>{children}</div>
-    
+
         } else if (docType === 'POD') {
           return <div className= 'box-container-info-item red-info-item'>{children}</div>
         }
-  
+
     }
 
+type InfoProps = {
+  detailedInfo: { [key: string]: any }[];
+}
 
+const Info: React.FC<InfoProps> = ({ detailedInfo }) => {
+  console.log(detailedInfo);
 
-function Info ({detailedInfo}) {
-
-  console.log(detailedInfo)
-
-  
-
-return (    
+return (
     <div id='box-container-info' >
     <GoodOrBad  detailedInfo = {detailedInfo} docType={'Rechnung'}>
         <h3 className='white'>Rechnung</h3>
@@ -77,7 +81,7 @@ return (
             Auftragsnummer: {detailedInfo[0].Rechnung.auftragsNummer}
            </p>
         </div>
-  
+
         </GoodOrBad>
 
 
@@ -97,7 +101,7 @@ return (
             </p>
 
           </div>
-  
+
       </GoodOrBad>
 
       <GoodOrBad  detailedInfo = {detailedInfo} docType={'POD'}>
@@ -116,9 +120,9 @@ return (
             </p>
 
           </div>
-  
+
       </GoodOrBad>
-        
+
   </div>
 )
 

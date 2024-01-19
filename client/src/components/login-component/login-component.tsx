@@ -1,6 +1,6 @@
 import './login-component.css'
 
-function LoginComponent(){
+function LoginComponent() : React.ReactNode {
 
   return(
     <div id='login-window'>

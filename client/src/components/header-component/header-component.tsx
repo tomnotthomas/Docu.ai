@@ -3,9 +3,9 @@ import { IoIosLogOut } from "react-icons/io";
 import { MdOutlineDocumentScanner } from "react-icons/md";
 
 
-function Header(){
+function Header() : React.ReactNode {
   return (
-    <div id='header-component'>  
+    <div id='header-component'>
       <div id='header-component-left'>
       <MdOutlineDocumentScanner id='MdOutlineDocumentScanner' />
       <h1>Docu.ai</h1>
