@@ -2,7 +2,7 @@ import express from 'express';
 import analyseDoc from './Controllers/image-analyser-controller.js'
 import upload from './Controllers/image-upload-controller.js'
 import getStatusOfDocuments from './Controllers/status-of-documents-controller.js'
-import getAllDocuments from './Controllers/get-all-documents-controller.ts';
+import getAllDocuments from './Controllers/get-all-documents-controller.js';
 import deleteStatusOfDocuments from './Controllers/status-of-documents-deletetion.js';
 import multiparty from 'connect-multiparty'
 
