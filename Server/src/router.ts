@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import analyseDoc from './Controllers/image-analyser-controller.js'
 import upload from './Controllers/image-upload-controller.js'
 import getStatusOfDocuments from './Controllers/status-of-documents-controller.js'
@@ -8,7 +8,7 @@ import multiparty from 'connect-multiparty'
 
 const multipartyMiddleware = multiparty();
 
-const router = express.Router();
+const router : Router = express.Router();
 
 //analyse the document and upload the information to the database
 router.post('/analysedoc', analyseDoc)
