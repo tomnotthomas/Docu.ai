@@ -1,7 +1,13 @@
-import mongoose from 'mongoose'
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose'
+interface IRawOutput {
+  filename : string;
+  text : string;
+  invoice : string;
+  pod : string;
+  order : string;
+}
 
-const RawOutput = new Schema ({
+const RawOutput = new Schema<IRawOutput> ({
   filename: {
     type: String,
     required: true
@@ -24,6 +30,6 @@ const RawOutput = new Schema ({
   }
 })
 
-const RawTextOutput = mongoose.model('RawoutputSchema', RawOutput);
+const RawTextOutput = model<IRawOutput>('RawoutputSchema', RawOutput);
 
 export default RawTextOutput;

@@ -1,7 +1,8 @@
 import StatusOfDocuments from "../Models/status-of-documents-model.js"
+import { Request, Response } from "express";
 
 
-const getAllDocuments= async function(req, res, next) {
+const getAllDocuments= async function(req : Request, res : Response, next) {
   try{
   const allDocuments = await StatusOfDocuments.find({});
   res.status(201).send(allDocuments);

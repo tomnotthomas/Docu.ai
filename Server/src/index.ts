@@ -1,12 +1,11 @@
 import mongoose from 'mongoose';
-import express from 'express';
-import cors from 'cors';
+import express, { Application } from 'express';
+import cors, {CorsOptions} from 'cors';
 import router from './router.js';
 
+const app : Application = express()
 
-const app = express()
-
-
+const corsOptions: CorsOptions = {};
 
 //enable cors to send and receive things from frontend
 app.use(cors())

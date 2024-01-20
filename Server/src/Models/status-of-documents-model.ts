@@ -1,9 +1,12 @@
-import mongoose from 'mongoose';
-const Schema = mongoose.Schema;
+import {Schema, model} from 'mongoose';
+
+interface IStatus {
+  workpackage: string;
+  documents : string;
+}
 
 
-
-const Status = new Schema ({
+const Status = new Schema<IStatus> ({
   workpackage: {
     type: String,
     required: true
@@ -15,6 +18,6 @@ const Status = new Schema ({
 })
 
 
-const StatusOfDocuments = mongoose.model('StatusOfDocumentsSchema', Status);
+const StatusOfDocuments = model<IStatus>('StatusOfDocumentsSchema', Status);
 
 export default StatusOfDocuments;
