@@ -1,12 +1,5 @@
 import {Schema, model} from 'mongoose'
-interface IRawOutput {
-  filename : string;
-  text : string;
-  invoice : string;
-  pod : string;
-  order : string;
-}
-
+import { IRawOutput } from '../types/model-types.js';
 const RawOutput = new Schema<IRawOutput> ({
   filename: {
     type: String,

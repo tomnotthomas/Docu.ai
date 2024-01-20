@@ -1,10 +1,5 @@
 import {Schema, model} from 'mongoose';
-
-interface IStatus {
-  workpackage: string;
-  documents : string;
-}
-
+import { IStatus } from '../types/model-types.js';
 
 const Status = new Schema<IStatus> ({
   workpackage: {
