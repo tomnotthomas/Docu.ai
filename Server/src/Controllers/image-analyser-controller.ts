@@ -50,8 +50,7 @@ const analyseDoc = async function (req: Request, res: Response) {
       const totalResponse: AnalyzeExpenseResponse = await textractClient.send(command);
 
       const displayBlockInfo = async (response: AnalyzeDocumentCommandOutput) => {
-        console.log('it is responce for Andro')
-        console.log(typeof response)
+      
 
         try {
 

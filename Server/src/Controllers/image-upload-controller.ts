@@ -7,16 +7,46 @@ import { fromIni } from '@aws-sdk/credential-providers';
 import fs from 'fs';
 import pdf2img from 'pdf-img-convert';
 import path from 'path';
+import { Request, Response} from 'express';
 
 // Initialize S3 client
+
+const region : string = process.env.REGION || 'default'
+const credentials : { profile : string} = { profile : process.env.PROFILE || 'default'};
 const s3Client = new S3Client({
-  region: process.env.REGION,
-  credentials: fromIni({ profile: process.env.PROFILE })
+  region: region,
+  credentials: fromIni(credentials)
 });
 
+
+type UploadedFile = {
+  fieldName: string;
+  originalFilename: string;
+  path: string;
+  headers: {
+    'content-disposition': string;
+    'content-type': string;
+  };
+  size: number;
+  name: string;
+  type: string;
+};
+
+type FilesProperty = {
+  file: UploadedFile | UploadedFile[];
+};
+
+
+declare module 'express' {
+  interface Request {
+    files: FilesProperty
+  }
+}
+
 // Upload function
-const upload = async function (req, res) {
+const upload = async function (req: Request, res: Response) {
   try {
+    console.log(req.files, 'And here is file', req.files.file )
     if (!req.files || !req.files.file) {
       return res.status(400).send("File not received");
     }
@@ -32,7 +62,7 @@ const upload = async function (req, res) {
         const conversion_config = {
           scale: 2.0
         };
-    
+
         // Convert PDF to images (JPG)
         const convertedFiles = await pdf2img.convert(file.path, conversion_config);
         filesToUpload.push(...convertedFiles.map((buffer, index) => {
@@ -51,7 +81,7 @@ const upload = async function (req, res) {
     // Upload files to S3 and add file names to the array
     for (const uploadFile of filesToUpload) {
       const fileData = fs.readFileSync(uploadFile.path);
-  
+
       const uploadParams = {
         Bucket: process.env.MY_BUCKET,
         Key: uploadFile.originalFilename,
@@ -59,18 +89,23 @@ const upload = async function (req, res) {
       };
       // Delete the temp file
       await s3Client.send(new PutObjectCommand(uploadParams));
-      fs.unlinkSync(uploadFile.path); 
+      fs.unlinkSync(uploadFile.path);
     }
 
     console.log("Successfully uploaded data");
     // Send the original file name as response
-   
-    res.status(200).json({ fileName: files[0].originalFileName }); 
+
+    res.status(200).json({ fileName: files[0].originalFilename });
     } catch (err) {
-    console.error("Error:", err);
-    res.status(500).send(err.message);
+      console.error("Error:", err);
+      if (err instanceof Error) {
+        res.status(500).send(err.message);
+      } else {
+        res.status(500).send("An unknown error occurred");
+      }
     }
-    };
-    
+
+  };
+
     export default upload;
 
