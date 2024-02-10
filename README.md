@@ -90,6 +90,12 @@ Processing your document takes some time. Allow a few seconds(20seconds) to pass
 - **Express with MongoDB & Mongoose**: For backend development.
 - **JavaScript**: The primary programming language used.
 
+## Contributors
+
+- Tom Schwabe
+
+
+
 ---
 
 *Note: This POC is part of an ongoing project and is subject to changes and improvements.*
