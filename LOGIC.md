@@ -18,7 +18,7 @@ Here's thejourney through our document analysis process:
 
 For a detailed visual representation of the process, check out these steps in our flowcharts:
 
-- **Initial Analysis Process for one page:** 
+- **Initial Analysis Process for one PDF:** 
   ![Initial Process](https://github.com/tomnotthomas/docu.ai/assets/126760913/9c4d8e8e-2481-4b71-8a4b-8b2ffd1ed79d)
 
 - **Subsequent Processing Steps:** 
