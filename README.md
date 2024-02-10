@@ -1,5 +1,8 @@
 # DOCU.AI: Document Automation POC for Fintech Company 📈📊
 
+![ScreenRecording2024-02-10at14 57 16-ezgif com-speed](https://github.com/tomnotthomas/docu.ai/assets/126760913/7407cb07-e87a-47c1-ae65-fc863cea1fa0)
+
+
 ## Introduction
 
 This Proof of Concept (POC) is developed for a large fintech company with the aim to automate document checks against specific criteria. We leverage Amazon's machine learning algorithms, specifically **AMAZON Textract**, to extract and analyze data from documents. The goal is to assess the feasibility of creating an automated solution versus purchasing an existing one.
