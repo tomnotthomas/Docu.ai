@@ -1,4 +1,4 @@
-# DOCU.AI: Document Automation POC for Fintech Company 📈📊
+# Docu.ai: Document Automation POC for Fintech Company 📈📊
 
 ![ScreenRecording2024-02-10at14 57 16-ezgif com-speed](https://github.com/tomnotthomas/docu.ai/assets/126760913/7407cb07-e87a-47c1-ae65-fc863cea1fa0)
 
