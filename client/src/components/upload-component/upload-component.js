@@ -12,7 +12,6 @@ function DragDrop() {
 
   const handleChange = (newFiles) => {
     const file = newFiles[0];
-    console.log("Selected file:", file);
     setFile(file);
     uploadFile(file);
   };
@@ -63,7 +62,6 @@ function DragDrop() {
       }
 
       const vorgangData = { vorgang: getVorgang(file) };
-      console.log(vorgangData);
       const deleteResponse = await fetch('http://localhost:8080/statusofdocuments', {
         method: "DELETE",
         headers: {

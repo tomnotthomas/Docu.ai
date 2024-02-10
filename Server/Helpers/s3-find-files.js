@@ -8,9 +8,9 @@ import 'dotenv/config'
 import { fromIni } from '@aws-sdk/credential-providers';
 
 
-//REGION is the region of your AWS account, credentials profile is your profile name
+//Region of where the S3 client is setup
 const client = new S3Client({
-  region: process.env.REGION,
+  region: process.env.REGION_S3,
   credentials: fromIni({ profile: process.env.PROFILE }),
 });
 

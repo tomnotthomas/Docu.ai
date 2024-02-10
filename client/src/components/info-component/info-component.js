@@ -48,7 +48,6 @@ function GoodOrBad ({detailedInfo, docType, children}) {
 
 function Info ({detailedInfo}) {
 
-  console.log(detailedInfo)
 
   
 

@@ -5,21 +5,13 @@ const getStatusOfDocuments = async function(req, res, next) {
   //Get the name
   const nameOfDoc = req.body.vorgang;
   
-  //TODO create helper function that finds the document you are lookging for
-
-
-  //TODO Get the corresponding invoice
-
-
 
   async function findDocument(docType, name, i){
     try{
-      console.log(docType+name+'-'+i+'.jpg')
       //TODO find all document pages that correspond to the name of the transaction
       const foundDoc = await RawTextOutput.findOne({
         filename: docType+name+'-'+i+'.jpg'
       })
-      console.log(foundDoc);
       if(foundDoc) {
         const data = foundDoc.toObject();
         return JSON.stringify(data)
@@ -69,26 +61,6 @@ const getStatusOfDocuments = async function(req, res, next) {
 
 
   return getAllPagesOfAllThreeDocs();
-
-    //if it doesnt exist, return null
-
-    //TODO check all documents that belong to that invoice for amount and transport number
-
-  //TODO get the corresponding order
-
-    //TODO find all order document pages that correspond to the name of the transaction.
-    //if it doesn't exist, return null
-
-    //TODO check all documents that belong to that order for the amount and transport number
-      //transport number is only a boolean here.
-
-    //
-  //TODO get the corresponding pod
-
-    //TODO find all pd document pages that correspond to the name of the transaction.
-    //if it doesn't exist, return null
-
-    //TODO check all documents that belong to that pod for a signature
 
 
 }

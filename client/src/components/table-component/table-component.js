@@ -5,9 +5,7 @@ import TableItem from '../table-item-component/table-item-component.js';
 
 function Table ({ documents}){
 
-  if(documents){
-    console.log(documents)
-  }
+ 
 
 
   //For each object in the array of documents, I have to first get the workpackage names and display them

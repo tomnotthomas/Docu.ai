@@ -22,7 +22,6 @@ export default function Dashboard() {
     .then((response)=> response.json())
     .then((data) => {
       setDocuments(data);
-      console.log(documents)
     })
     .catch ((err) => {
       console.log(err.message);

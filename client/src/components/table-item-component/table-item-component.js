@@ -14,7 +14,6 @@ import { useState } from 'react';
       }
   
   const wholeObj = parseCheck(docType, info)
-      console.log(wholeObj[docType])
   const pages = wholeObj[docType]
 
 
@@ -26,14 +25,10 @@ import { useState } from 'react';
   if(docType === 'Rechnung'){
     pages.forEach((page) => {
      const parsed= JSON.parse(page)
-      console.log(parsed.invoice)
       const parsedInv = (parsed.invoice)
       const invDetails = JSON.parse(parsedInv)
-      console.log(invDetails)
       betrag = invDetails.Betrag;
-      console.log(betrag)
       transportAuftragsNummer = invDetails.TransportAuftragsNummer
-      console.log(transportAuftragsNummer)
     })
   }
 
@@ -47,10 +42,8 @@ import { useState } from 'react';
   if (docType === 'POD') {
     pages.forEach((page) => {
       const parsed=JSON.parse(page)
-      console.log(parsed.pod)
       const parsedPod = (parsed.pod)
       const podDetails = JSON.parse(parsedPod);
-      console.log(podDetails);
       unterschrift = podDetails.Unterschrift;
     })
   }
@@ -66,10 +59,8 @@ import { useState } from 'react';
   if (docType === 'Auftrag') {
     pages.forEach((page) => {
       const parsed=JSON.parse(page)
-      console.log(parsed.order)
       const parsedOrder = (parsed.order)
       const orderDetails = JSON.parse(parsedOrder);
-      console.log(orderDetails);
       if(comparedBetrag > orderDetails.Betrag){
         return
       } else {    comparedBetrag = orderDetails.Betrag;
@@ -79,7 +70,6 @@ import { useState } from 'react';
 
 
   if(docType === 'Auftrag' && comparedBetrag) {
-    console.log(comparedBetrag)
     return <MdCheckBox className='item-icon green'/>
   } else if(docType === 'Auftrag') {
     return <CgDanger className='item-icon red'/>
@@ -102,7 +92,6 @@ function allInfo (info){
         }
       
     const wholeObj = parseCheck(docType, info)
-        console.log(wholeObj[docType])
     const pages = wholeObj[docType]
     if(pages.length < 1) {
       return {gefunden: "Nein", betrag:'Nicht gefunden', auftragsNummer: 'Nicht gefunden', Unterschrift: 'Nicht gefunden', betragIstGleich: 'Nicht gefunden'}
@@ -116,15 +105,11 @@ function allInfo (info){
     if(docType === 'Rechnung'){
       pages.forEach((page) => {
        const parsed= JSON.parse(page)
-        console.log(parsed.invoice)
         const parsedInv = (parsed.invoice)
         const invDetails = JSON.parse(parsedInv)
-        console.log(invDetails)
         betrag = invDetails.Betrag;
-        console.log(betrag)
         if(invDetails.TransportAuftragsNummer){
         transportAuftragsNummer = invDetails.TransportAuftragsNummer
-        console.log(transportAuftragsNummer)
         }
       })
       return {gefunden: 'Ja', betrag: betrag, auftragsNummer: transportAuftragsNummer}
@@ -134,10 +119,8 @@ function allInfo (info){
     if (docType === 'POD') {
       pages.forEach((page) => {
         const parsed=JSON.parse(page)
-        console.log(parsed.pod)
         const parsedPod = (parsed.pod)
         const podDetails = JSON.parse(parsedPod);
-        console.log(podDetails);
         unterschrift ="Gefunden"
       })
       return {gefunden: 'Ja', Unterschrift: unterschrift}
@@ -148,10 +131,8 @@ function allInfo (info){
     if (docType === 'Auftrag') {
       pages.forEach((page) => {
         const parsed=JSON.parse(page)
-        console.log(parsed.order)
         const parsedOrder = (parsed.order)
         const orderDetails = JSON.parse(parsedOrder);
-        console.log(orderDetails);
         if(comparedBetrag > orderDetails.Betrag){
           return
         } else {
@@ -163,7 +144,6 @@ function allInfo (info){
   }
 
   const documents = info
-  console.log({documents})
 
   let finalInformationForInfo = [
     { Rechnung: exactInformationPerDocType({ docType: 'Rechnung', info: documents }) },

@@ -2,17 +2,21 @@ import {
   S3Client,
   PutObjectCommand
 } from "@aws-sdk/client-s3";
-import 'dotenv/config';
+import 'dotenv/config'
 import { fromIni } from '@aws-sdk/credential-providers';
 import fs from 'fs';
 import pdf2img from 'pdf-img-convert';
 import path from 'path';
 
-// Initialize S3 client
+
+
+// Region where S3 Client is deployed
 const s3Client = new S3Client({
-  region: process.env.REGION,
+  region: process.env.REGION_S3,
   credentials: fromIni({ profile: process.env.PROFILE })
 });
+
+
 
 // Upload function
 const upload = async function (req, res) {
@@ -62,7 +66,6 @@ const upload = async function (req, res) {
       fs.unlinkSync(uploadFile.path); 
     }
 
-    console.log("Successfully uploaded data");
     // Send the original file name as response
    
     res.status(200).json({ fileName: files[0].originalFileName }); 

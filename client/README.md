@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DOCU.AI: Document Automation POC for Fintech Company 📈📊
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+This Proof of Concept (POC) is developed for a large fintech company with the aim to automate document checks against specific criteria. We leverage Amazon's machine learning algorithms, specifically **AMAZON Textract**, to extract and analyze data from documents. The goal is to assess the feasibility of creating an automated solution versus purchasing an existing one.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Setup Guide 🛠️
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Creating AWS Account and Setting up Services
 
-## Learn More
+1. **Create an AWS account** if you don't have one.
+2. **Enable an S3 bucket** in your AWS account.
+3. Note: Amazon Textract doesn't require enabling like the S3 bucket.
 
-To learn more about Next.js, take a look at the following resources:
+### Configuring Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### For Server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- `MY_BUCKET`: Name of your AWS bucket.
+- `PROFILE`: Name of your AWS profile.
+- `REGION_TEXTRACT`: The region where you want your Textract client to be used. Ideally, it should be near your S3 bucket to reduce latency.
+- `REGION_S3`: The region where your S3 bucket is deployed.
 
-## Deploy on Vercel
+#### For Client
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `MY_BUCKET`: Name of your AWS bucket.
+- `PROFILE`: Name of your AWS profile.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Running the Application
+
+- **Backend**: Run `node index.js` in your terminal.
+- **Frontend**: Execute `npm run dev`.
+
+  ## Key Terms and Document Criteria 📑
+
+- **German Terms in Use**:
+  - *Rechnung* (Invoice)
+  - *Auftrag* (Order)
+  - *POD* (Proof of Delivery)
+
+- **Document Criteria**:
+  - *POD*: Must include a signature.
+  - *Rechnung*: Should contain a total amount and an “Auftragsnummer”.
+  - *Auftrag*: Should include a total amount.
+  - All three documents (*POD*, *Rechnung*, *Auftrag*) are required for each work package.
+  - The value for the total amount on *Rechnung* and *Auftrag* should match.
+
+## Assumptions 🧐
+
+- File Naming and Format:
+  - An *Auftrag* is always named “Auftrag” and is a PDF (e.g., `Auftrag(5).pdf`).
+  - A *Rechnung* is always named “Rechnung” and is a PDF (e.g., `Rechnung35.pdf`).
+  - A *POD* is always named “POD” and is a PDF (e.g., `POD32.pdf`).
+
+- Document Content:
+  - Each PDF contains only the necessary document, with no additional attachments.
+  - A PDF for any of the named files contains only one document.
+
+## Next Steps 🚀
+
+- Replace the PDF to image converter (`pdf2img`) to address empty image conversions.
+- Develop a multi-file upload feature for faster processing.
+- Extend document checks and increase reliability using custom models from Textract.
+- Implement a feature to handle multiple documents in one PDF.
+
+## Technologies Used 🛠️
+
+- **AWS Textract**: For document analysis.
+- **AWS S3**: For file storage.
+- **Next.js**: For frontend development.
+- **Express with MongoDB & Mongoose**: For backend development.
+- **JavaScript**: The primary programming language used.
+
+---
+
+*Note: This POC is part of an ongoing project and is subject to changes and improvements.*
+
+

@@ -5,15 +5,14 @@ import RawTextOutput from "../Models/raw-ocr-output-model.js";
 import findFiles from "../Helpers/s3-find-files.js";
 //Takes bucket and photo into the request body and provides text from an image
 
-//REGION is the region of your S3 Account!!, credentials profile is your profile name
+//Region of textract client
 const textractClient = new TextractClient({
-  region: process.env.REGION,
+  region: process.env.REGION_TEXTRACT,
   credentials: fromIni({ profile: process.env.PROFILE }),
 });
 
 
   const analyseDoc = async function (req, res, next) {
-    console.log(req.body.photo)
     let photo = req.body.photo;
     const Bucket = process.env.MY_BUCKET;
     let allDocuments = [];
@@ -207,7 +206,6 @@ const textractClient = new TextractClient({
     }
   };
   
-  console.log(analyze_document_text())
   return analyze_document_text();
   }
 
@@ -225,7 +223,6 @@ const textractClient = new TextractClient({
 const allFilesInS3 = await findFiles();
 const allFilesInS3Array = allFilesInS3[0].split(',');
 
-console.log(allFilesInS3);
 const promises = [];
 
 //Aktuell begrenzt auf 15 Seiten
@@ -235,13 +232,11 @@ const promises = [];
     if ( allFilesInS3Array.some(file => file === currentPhoto)) {
 
       promises.push(analyzePageSafe(currentPhoto));
-      console.log(currentPhoto)
     }
   }
 
     // Wait for all promises to resolve
     const allDocuments = await Promise.all(promises);
-    //console.log(allDocuments)
     // Filter out null results and send the response
     res.status(201).send(("Poper analysis done"));
   } catch (err) {
