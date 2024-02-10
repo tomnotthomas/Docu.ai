@@ -44,10 +44,6 @@ or use SSO, to connect your VSCODE with your AWS account.
 - **Backend**: Run `node index.js` in your terminal.
 - **Frontend**: Execute `npm run dev`.
 
-## IMPORTANT NOTE
-Processing your document takes some time. Allow a few seconds(20seconds) to pass until you switch from
-"Hochladen" to the Dashboard.
-
   ## Key Terms and Document Criteria 📑
 
 - **German Terms in Use**:
