@@ -42,7 +42,7 @@ function DragDrop() {
       if (!uploadResponse.ok) {
         throw new Error('Upload failed');
       }
-      setUploadStatus("File uploaded successfully");
+      setUploadStatus("File uploaded successfully. Please wait another 20 seconds for processing. Do not leave the page");
 
       const postData = {
         bucket: process.env.MY_BUCKET,
@@ -62,6 +62,7 @@ function DragDrop() {
       }
 
       const vorgangData = { vorgang: getVorgang(file) };
+      console.log(vorgangData)
       const deleteResponse = await fetch('http://localhost:8080/statusofdocuments', {
         method: "DELETE",
         headers: {

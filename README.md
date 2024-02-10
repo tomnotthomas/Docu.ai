@@ -14,6 +14,11 @@ This Proof of Concept (POC) is developed for a large fintech company with the ai
 2. **Enable an S3 bucket** in your AWS account.
 3. Note: Amazon Textract doesn't require enabling like the S3 bucket.
 
+### Connecting your VSCODE with AWS
+1. **Add AWS Toolkit - Amazon Q, Codewhisperer, and more** to your add ins.
+2. **Go to AWS console** on the top right, click on the account name and click on Security credentials to obtain your Access key and private acces key
+or use SSO, to connect your VSCODE with your AWS account.
+
 ### Configuring Environment Variables
 
 #### For Server
@@ -32,6 +37,10 @@ This Proof of Concept (POC) is developed for a large fintech company with the ai
 
 - **Backend**: Run `node index.js` in your terminal.
 - **Frontend**: Execute `npm run dev`.
+
+## IMPORTANT NOTE
+Processing your document takes some time. Allow a few seconds(20seconds) to pass until you switch from
+"Hochladen" to the Dashboard.
 
   ## Key Terms and Document Criteria 📑
 
@@ -56,6 +65,7 @@ This Proof of Concept (POC) is developed for a large fintech company with the ai
 
 - Document Content:
   - Each PDF contains only the necessary document, with no additional attachments.
+  - There are not more than 3000 words on a document.
   - A PDF for any of the named files contains only one document.
 
 ## Next Steps 🚀
@@ -64,6 +74,7 @@ This Proof of Concept (POC) is developed for a large fintech company with the ai
 - Develop a multi-file upload feature for faster processing.
 - Extend document checks and increase reliability using custom models from Textract.
 - Implement a feature to handle multiple documents in one PDF.
+- Add a loading screen when the documents are still in process for the upload section
 
 ## Technologies Used 🛠️
 

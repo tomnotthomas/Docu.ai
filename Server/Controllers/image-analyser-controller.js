@@ -26,7 +26,7 @@ const textractClient = new TextractClient({
   const params = {
     Document: {
       S3Object: {
-        Bucket: req.body.bucket,
+        Bucket: process.env.MY_BUCKET,
         Name: photo
       },
     },

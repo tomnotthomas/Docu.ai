@@ -18,7 +18,7 @@ return (
       <Link className='link' href='/dashboard'>
         <h2 className='menu-font'>
         <RiDashboard2Line className='navbar-icon'/>
-        Dasboard</h2>
+        Dashboard</h2>
     </Link>
       <h2 className='menu-font'>
         <MdInsights className='navbar-icon'/>
