@@ -2,18 +2,16 @@ import {
   S3Client,
   // This command supersedes the ListObjectsCommand and is the recommended way to list objects.
   ListObjectsV2Command,
-  PutObjectCommand
-} from "@aws-sdk/client-s3";
-import 'dotenv/config'
+  PutObjectCommand,
+} from '@aws-sdk/client-s3';
+import 'dotenv/config';
 import { fromIni } from '@aws-sdk/credential-providers';
-
 
 //Region of where the S3 client is setup
 const client = new S3Client({
   region: process.env.REGION_S3,
   credentials: fromIni({ profile: process.env.PROFILE }),
 });
-
 
 //Get all the documents from the specified S3 bucket.
 const findFiles = async function () {
@@ -32,13 +30,12 @@ const findFiles = async function () {
     while (isTruncated) {
       const { Contents, IsTruncated, NextContinuationToken } =
         await client.send(command);
-      const contentsList = Contents.map((c) => `${c.Key}`).join(",");
-      contents.push (contentsList);
+      const contentsList = Contents.map((c) => `${c.Key}`).join(',');
+      contents.push(contentsList);
       isTruncated = IsTruncated;
       command.input.ContinuationToken = NextContinuationToken;
     }
     return contents;
-    
   } catch (err) {
     console.error(err);
   }

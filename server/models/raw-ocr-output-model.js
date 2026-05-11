@@ -1,28 +1,28 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-const RawOutput = new Schema ({
+const RawOutput = new Schema({
   filename: {
     type: String,
-    required: true
+    required: true,
   },
-  text:{
+  text: {
     type: String,
-    required: true
+    required: true,
   },
   invoice: {
     type: String,
-    required: true
+    required: true,
   },
   pod: {
     type: String,
-    required: true
+    required: true,
   },
   order: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
 const RawTextOutput = mongoose.model('RawoutputSchema', RawOutput);
 
