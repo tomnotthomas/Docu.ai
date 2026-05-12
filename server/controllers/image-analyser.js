@@ -6,7 +6,7 @@ import {
 import { fromIni } from '@aws-sdk/credential-providers';
 import 'dotenv/config';
 import findFiles from '../Helpers/s3-find-files.js';
-import { analyzePage, analyzePageSafe } from '../helpers/image analysis.js/image-analyzer.js';
+import { analyzePage, analyzePageSafe } from '../helpers/image analysis/image-analyzer.js';
 
 //Takes bucket and photo into the request body and provides text from an image
 
