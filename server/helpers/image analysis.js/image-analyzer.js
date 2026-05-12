@@ -20,7 +20,8 @@ export const analyzePage = async function (photo) {
   const totalResponse = await textractClient.send(command);
 
   await displayBlockInfo()
-  return analyze_document_text();
+  const analyzedPage = await analyze_document_text()
+  return analyzedPage
 };
 
 export const analyzePageSafe = async (photo) => {
