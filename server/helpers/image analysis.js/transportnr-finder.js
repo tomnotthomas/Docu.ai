@@ -1,5 +1,7 @@
-      //This finds the Transport number. Currently only for the Jitpay invoice template.
-     export const findTransportNumber = async () => {
+import { AnalyzeDocumentCommand } from "@aws-sdk/client-textract";    
+    
+    //This finds the Transport number. Currently only for the Jitpay invoice template.
+      export const findTransportNumber = async () => {
         try {
           const analyzeDocCommand = new AnalyzeDocumentCommand(params);
           const response = await textractClient.send(analyzeDocCommand);
