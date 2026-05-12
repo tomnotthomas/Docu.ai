@@ -1,3 +1,6 @@
+import { AnalyzeExpenseCommand, AnalyzeDocumentCommand } from "@aws-sdk/client-textract";
+import RawTextOutput from '../Models/raw-ocr-output-model.js';
+
    export const analyzePage = async function (photo) {
       // You just need to provide the bucket and document name of your s3 bucket and you will get the text back.
       const params = {
@@ -189,7 +192,8 @@
       return analyze_document_text();
     };
 
-    const analyzePageSafe = async (photo) => {
+   
+   export const analyzePageSafe = async (photo) => {
       try {
         return await analyzePage(photo);
       } catch (err) {
