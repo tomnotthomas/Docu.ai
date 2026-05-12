@@ -7,7 +7,10 @@ import { fromIni } from '@aws-sdk/credential-providers';
 import 'dotenv/config';
 import RawTextOutput from '../Models/raw-ocr-output-model.js';
 import findFiles from '../Helpers/s3-find-files.js';
-import { analyzePage, analyzePageSafe } from '../helpers/image analysis.js/image-analyzer.js';
+import {
+  analyzePage,
+  analyzePageSafe,
+} from '../helpers/image analysis.js/image-analyzer.js';
 
 //Takes bucket and photo into the request body and provides text from an image
 
@@ -22,7 +25,7 @@ const analyseDoc = async function (req, res, next) {
   const Bucket = process.env.MY_BUCKET;
   let allDocuments = [];
   try {
-    await analyzePage()
+    await analyzePage();
 
     //I only want to send the whole process to run, if there is a document with that name
     const allFilesInS3 = await findFiles();
