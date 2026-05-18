@@ -2,8 +2,10 @@ import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import 'dotenv/config';
 import { fromIni } from '@aws-sdk/credential-providers';
 import fs from 'fs';
-import pdf2img from 'pdf-img-convert';
 import path from 'path';
+
+
+const pdf2img = await import("pdf-img-convert");
 
 // Region where S3 Client is deployed
 const s3Client = new S3Client({

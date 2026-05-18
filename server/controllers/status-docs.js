@@ -1,4 +1,4 @@
-import StatusOfDocuments from '../Models/status-of-documents-model.js';
+import StatusOfDocuments from '../Models/doc-status-model.js';
 import RawTextOutput from '../Models/raw-ocr-output-model.js';
 
 const getStatusOfDocuments = async function (req, res, next) {

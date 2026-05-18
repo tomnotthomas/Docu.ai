@@ -1,9 +1,9 @@
 import express from 'express';
-import analyseDoc from './Controllers/image-analyser-controller.js';
-import upload from './Controllers/image-upload-controller.js';
-import getStatusOfDocuments from './Controllers/status-of-documents-controller.js';
-import getAllDocuments from './Controllers/get-all-documents-controller.js';
-import deleteStatusOfDocuments from './Controllers/status-of-documents-deletetion.js';
+import analyseDoc from './controllers/image-analyser.js';
+import upload from './controllers/image-upload.js';
+import getStatusOfDocuments from './controllers/status-docs.js'
+import getAllDocuments from './controllers/get-all-documents.js';
+import deleteStatusOfDocuments from './controllers/status-docs-deletetion.js';
 import multiparty from 'connect-multiparty';
 
 const multipartyMiddleware = multiparty();

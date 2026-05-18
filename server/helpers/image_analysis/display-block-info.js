@@ -1,6 +1,5 @@
 import { findTransportNumber } from "./transportnr-finder.js"; 
-import RawTextOutput from '../Models/raw-ocr-output-model.js';
-
+import RawTextOutput from "../../models/raw-ocr-output-model.js";
  export const displayBlockInfo = async (response) => {
     try {
       let words = [];
